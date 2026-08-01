@@ -9,7 +9,7 @@
 %% Please use the following documentclass and journal abbreviations for preprints and final revised papers.
 
 %% 2-column papers and preprints
-\documentclass[journal abbreviation, manuscript]{copernicus}
+\documentclass[gmd, manuscript]{copernicus}
 
 
 
@@ -81,17 +81,31 @@
 
 \begin{document}
 
-\title{TEXT}
+\title{Diagnostic Specific Language for the Energy Exascale Earth System Model}
 
 
 % \Author[affil]{given_name}{surname}
 
-\Author[][EMAIL]{}{} %% correspondence author
-\Author[]{}{}
-\Author[]{}{}
+\Author[1][naser.mahfouz@pnnl.gov]{Naser}{Mahfouz} %% correspondence author
+\Author[2]{Luca}{Bertagna}
+\Author[3]{Aaron}{Donahue}
+\Author[4]{Peter}{Schwartz}
+\Author[5]{Jeffrey}{Johnson}
+\Author[6]{Noel}{Keen}
+\Author[3]{Hassan}{Beydoun}
+\Author[2]{Benjamin}{Hillman}
+\Author[3]{Walter}{Hannah}
+\Author[3]{Peter}{Bogenschutz}
+\Author[1]{Johannes}{M\"ulmentst\"adt}
+\Author[7]{More}{Friends}
 
-\affil[]{ADDRESS}
-\affil[]{ADDRESS}
+\affil[1]{Pacific Northwest National Laboratory, Richland, WA, USA}
+\affil[2]{Sandia National laboratories, Albuquerque, NM, USA}
+\affil[3]{Lawrence Livermore National Laboratory, Livermore, CA, USA}
+\affil[4]{Oak Ridge National Laboratory, Oak Ridge, TN, USA}
+\affil[5]{Cohere Consulting LLC, Seattle, WA, USA}
+\affil[6]{Lawrence Berkeley National Laboratory, Berkeley, CA, USA}
+\affil[7]{Somewhere on This Bitter Earth, Anywhere, SW, TBE}
 
 %% The [] brackets identify the author with the corresponding affiliation. 1, 2, 3, etc. should be inserted.
 
@@ -103,9 +117,9 @@
 
 
 
-\runningtitle{TEXT}
+\runningtitle{Diagnostic Specific Language for E3SM}
 
-\runningauthor{TEXT}
+\runningauthor{Mahfouz et al.}
 
 
 
@@ -127,48 +141,146 @@
 
 
 \begin{abstract}
-TEXT
+Our thesis: We argue diagnostics are mathematical expressions represented by flexible
+compositions of a small set of operators and an algebra over them
+and that they should be evaluated by the model at runtime.
+The result: A scientist can imagine a variable or product and \emph{project} it out
+in a variety of productive ways --- instantaneous or averaged, over an arbitrary time period,
+mapped, masked, or redefined --- without touching the source code.
 \end{abstract}
 
-
-\copyrightstatement{TEXT} %% This section is optional and can be used for copyright transfers.
-
-
 \introduction  %% \introduction[modified heading if necessary]
-TEXT
+
+\subsection{Diagnostics in ESMs}
+Legacy paradigm: developer-scientists hard-code a fixed menu of diagnostics; everything else is done offline from raw output/archive.
+Adequate for coarse-resolution and/or monthly climatologies. Not scalable/responsive to high-res and high-freq.
+
+\subsection{Why higher-res/higher-freq breaks it}
+The cost of writing raw state at the frequency the science needs grows exponentially. Post-processing stops being cheap and starts being the bottleneck.
+Some diagnostics (e.g., conditional moments) are simply intractable offline at high resolution.
+
+\subsection{Two responses/options}
+\begin{enumerate}
+  \item Incremental/streaming: keep the legacy outputs and get cleverer about moving and compressing them.
+  \item Fundamental: push the diagnostic computation into the runtime, minimize I/O, and expose a composable vocabulary.
+\end{enumerate}
+
+Broadly, option 1 is the direction of everyone (including the European centers).
+E3SM's C++ atmosphere has been taking option 2 incrementally for two years without naming it.
+This manuscript names it, and we propose to formalize it.
+
+\subsection{Scope of this paper}
+We describe what the E3SM atmosphere does today, argue that it already constitutes a
+diagnostics-specific language, show a gallery of science it enables.
+We close by arguing for generalizing it across the model.
 
 
-\section{HEADING}
-TEXT
+\section{Diagnostics in EAMxx today}
+History and orientation: new model, new language, new runtime, etc. inspired a new way of doing stuff.
+Explain the software philosophy at the outset.
+
+\subsection{The diagnostic abstraction}
+A diagnostic declares its input fields as data, is handed them by the orchestrator, and
+produces one or more output fields.
+Lazily evaluated and timestamp-cached, so shared subexpressions
+compute once.
+Registration through a factory.
+
+\subsection{The operator algebra}
+List/table what we have:
+vertical extraction (levels, pressure, height);
+horizontal reduction (global, zonal bins);
+vertical reduction (sum/avg, mass- and thickness-weighted);
+vertical derivatives;
+time operators/management (instantaneous, average, accumulate, reset, etc.);
+binary/unary arithmetics;
+conditional sampling;
+histograms;
+simulators;
+named physical diagnostics.
+The algebra is closed: operators consume fields and produce fields, so they chain/compose (if they respect the expected input/output conventions).
+
+\subsection{Surface syntax and the parser}
+Tell story of slow beginnings, then formalization through a proper grammar, opting for xarray-inspired syntax.
+\begin{verbatim}
+((omega*qv).derivative(dx=dz,dims=['col'])).where(omega <= -10)
+\end{verbatim}
+
+\subsection{Multi-output diagnostics, caching, and (instrument) simulators}
+
+\subsection{Evaluation: from yaml entry to variable on disk}
 
 
-\subsection{HEADING}
-TEXT
+\subsection{Caveats and rough edges}
+We force users to know grids, layouts, and (si) units for now.
+
+\section{Gallery: science we did not plan for}
+{The central evidence for the thesis. Each subsection: the scientific question, the expression
+the user wrote, what it would have cost under the legacy paradigm, and --- critically --- the fact
+that it was a byproduct of the software philosophy rather than a designed feature.}
+
+\subsection{Horizontal and vertical reductions; e.g., RCE sims}
+
+\subsection{Arbitrary slice reductions; e.g., cloud-top quantities}
+
+\subsection{Conditional moments and correlations: e.g., Cess2}
+{Capturing $\overline{uv}$ instead of $\overline{u}\,\overline{v}$ without storing the full high-frequency state.}
+
+\subsection{Instability and oscillatory surface analyses; e.g., surface coupling}
+
+\subsection{Instrument simulators: COSP as the heaviest payload}
+
+\section{Costs and benefits}
+
+\subsection{Runtime cost versus I/O cost}
+A few benchmarks
+
+\subsection{Minimizing regrets: the fear of missing/forgetting data}
+The rational objection is ``what if I did not ask for the right thing because I couldn't have possibly anticipated wanting to analyze xyz phenomena?''
+Responses: raw output is still available to anyone who wants it; saving well-chosen \emph{intermediates} can also help; and the regret space will shrink as the algebra space expands.
+
+\subsection{Relationship to streaming and compression}
+All these are complementary, not competitive.
 
 
-\subsubsection{HEADING}
-TEXT
+\section{Toward a general and unified diagnostics language}
+
+\subsection{The principles, stated plainly}
+
+\begin{enumerate}
+  \item Diagnostics should not be hard-coded.
+  \item They should be parsed at runtime, and evaluated where the data already lives (on the GPU).
+  \item They should be flexible and composable --- small operators, closed algebra.
+  \item They should be arbitrarily projectable.
+  \item They should be useful for science and hypothesis testing.
+  \item They should be useful for logistics, e.g.\ saving disk space.
+  \item They should be useful for extensions, e.g.\ AI/hybrid modeling.
+\end{enumerate}
+
+\subsection{Generalization: what is atmosphere-specific and what is not}
+How to deal with component-specific conventions and extrapolate.
+
+\subsection{Unification vision: a shared core with component-specific shells}
+The concentric-shell picture: a shared parser, a kernelizer and kernel library, and a base driver, with component drivers building on top for their own needs.
+Components adopt rather than reinvent.
+
+\subsection{Implications for the AI era}
+Emulator-ready outputs by construction; hybrid and online-learning workflows; the longer-term
+``kernelizer'' idea of generating kernels on the fly from human-readable expressions.
+
+\subsection{A counterpoint to the prevailing winds}
 
 
 \conclusions  %% \conclusions[modified heading if necessary]
-TEXT
+Philosophy of software innovation enables more science than it was designed to do, and a productive cycle of science/software co-evolution...
 
 %% The following commands are for the statements about the availability of data sets and/or software code corresponding to the manuscript.
 %% It is strongly recommended to make use of these sections in case data sets and/or software code have been part of your research the article is based on.
-
-\codeavailability{TEXT} %% use this section when having only software code available
-
-
-\dataavailability{TEXT} %% use this section when having only data sets available
 
 
 \codedataavailability{TEXT} %% use this section when having data sets and software code available
 
 
-\sampleavailability{TEXT} %% use this section when having geoscientific samples available
-
-
-\videosupplement{TEXT} %% use this section when having video supplements available
 
 
 \appendix
