@@ -756,7 +756,7 @@ available. Finally, several applications for the E3SM Diags module were introduc
 	language = {en},
 	number = {7},
 	urldate = {2026-09-07},
-	journal = {J Adv Model Earth Syst},
+	journal = {J. Adv. Model Earth Syst.},
 	author = {Donahue, A. S. and Caldwell, P. M. and Bertagna, L. and Beydoun, H. and Bogenschutz, P. A. and Bradley, A. M. and Clevenger, T. C. and Foucar, J. and Golaz, C. and Guba, O. and Hannah, W. and Hillman, B. R. and Johnson, J. N. and Keen, N. and Lin, W. and Singh, B. and Sreepathi, S. and Taylor, M. A. and Tian, J. and Terai, C. R. and Ullrich, P. A. and Yuan, X. and Zhang, Y.},
 	month = jul,
 	year = {2024},
@@ -884,7 +884,7 @@ and time integration methods.},
 	language = {en},
 	number = {10-11},
 	urldate = {2026-09-07},
-	journal = {Environmental Modelling \& Software},
+	journal = {Environ. Model. Softw.},
 	author = {Zender, Charles S.},
 	month = oct,
 	year = {2008},
@@ -919,7 +919,7 @@ and time integration methods.},
 	language = {en},
 	number = {1},
 	urldate = {2026-09-07},
-	journal = {The International Journal of High Performance Computing Applications},
+	journal = {Int. J. High Perform. Comput. Appl.},
 	author = {Dennis, John M. and Edwards, Jim and Loy, Ray and Jacob, Robert and Mirin, Arthur A. and Craig, Anthony P. and Vertenstein, Mariana},
 	month = feb,
 	year = {2012},
@@ -978,4 +978,75 @@ and time integration methods.},
 	month = jul,
 	year = {1990},
 	pages = {76--82},
+}
+
+@article{bogenschutz_high_2025,
+	title = {High {Performance}, {High} {Fidelity}: {A} {GPU}‐{Accelerated} {Doubly}‐{Periodic} {Configuration} of the {Simple} {Cloud}‐{Resolving} {E3SM} {Atmosphere} {Model} {Version} 1 ({DP}‐{SCREAMv1})},
+	volume = {17},
+	issn = {1942-2466, 1942-2466},
+	shorttitle = {High {Performance}, {High} {Fidelity}},
+	url = {https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2025MS005127},
+	doi = {10.1029/2025MS005127},
+	abstract = {Abstract
+            The development of the Simplified Cloud Resolving Energy Exascale Earth System Atmosphere Model (SCREAMv1) enables global storm‐resolving simulations on modern GPU‐based supercomputers. However, the high computational cost of SCREAMv1 limits its routine use for process‐level studies, creating a need for efficient proxy configurations. This study addresses this gap by introducing DP‐SCREAMv1, a doubly periodic cloud‐resolving model designed to be fully consistent with SCREAMv1 while enabling high‐resolution, long‐duration simulations at significantly reduced computational expense by simulating a limited doubly periodic domain rather than the entire globe. Built on a C++/Kokkos architecture, DP‐SCREAMv1 achieves exceptional performance scalability on GPU systems and includes a rich library of cases for validation and scientific exploration. In this work, we demonstrate short wall‐clock times at SCREAMv1's default resolution and show that DP‐SCREAMv1 supports routine execution of large‐domain, high‐resolution experiments that were previously challenging in practice. Furthermore, we show that DP‐SCREAMv1 enables routine execution of “Giga‐LES” style simulations and facilitates large‐domain, high‐resolution simulations that were recently considered burdensome to perform. These results document an efficient, fully consistent process‐level configuration for SCREAMv1 (DP‐SCREAMv1) and illustrate its use for long‐duration and large‐domain experiments at cloud‐resolving to eddy‐permitting resolution.
+          , 
+            Plain Language Summary
+            Understanding and predicting weather and climate relies on advanced computer models that simulate atmospheric processes like storms and clouds. However, the most detailed and accurate models, which resolve these processes at very fine scales, are extremely computationally expensive and difficult to run for long periods or over large areas. To address this, we developed DP‐SCREAMv1, a streamlined version of a state‐of‐the‐art global atmospheric model. DP‐SCREAMv1 is designed to focus on smaller, more controlled areas of the atmosphere while maintaining the same high level of detail and accuracy as the global model. By harnessing modern supercomputers and their powerful graphics processing units (GPUs), DP‐SCREAMv1 can perform simulations that were previously impossible, such as modeling a large area of the tropics at resolutions as fine as 200 m. These simulations provide new insights into how precipitation forms and organizes, improve understanding of key atmospheric processes, and help refine the global model. DP‐SCREAMv1 also allows scientists to test new ideas more efficiently, paving the way for better climate and weather predictions in the future. This work demonstrates how cutting‐edge computing can push the boundaries of what we can learn about our atmosphere and associated models.
+          , 
+            Key Points
+            
+              
+                
+                  DP‐SCREAMv1 has been developed, leveraging the high‐performance benefits and achieving full implementation consistency with the global model
+                
+                
+                  Simulations with default resolution and standard domain size are now trivial with DP‐SCREAMv1
+                
+                
+                  High‐resolution, long‐duration, and relatively large limited‐area simulations are now possible with DP‐SCREAMv1 on GPUs},
+	language = {en},
+	number = {11},
+	urldate = {2026-09-08},
+	journal = {J. Adv. Model Earth Syst.},
+	author = {Bogenschutz, P. A. and Clevenger, T. C. and Bradley, A. M. and Caldwell, P. M. and Beydoun, H. and Mahfouz, N. and Keen, N. D. and Guba, O. and Bertagna, L. and Foucar, J. and Zhang, J. and Donahue, A. S.},
+	month = nov,
+	year = {2025},
+	pages = {e2025MS005127},
+}
+
+@article{beydoun_dissecting_2021,
+	title = {Dissecting {Anvil} {Cloud} {Response} to {Sea} {Surface} {Warming}},
+	volume = {48},
+	issn = {0094-8276, 1944-8007},
+	url = {https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2021GL094049},
+	doi = {10.1029/2021GL094049},
+	abstract = {Abstract
+            We derive an anvil cloud diagnostic from the continuity equation of cloud ice and apply it to the output of convection‐permitting Energy Exascale Earth System Model (E3SM) simulations run in radiative‐convective equilibrium mode. This diagnostic shows that anvil cloud fraction can be reliably diagnosed as a product of cloud detrainment and lifetime. Detrainment is found to be approximated well by a product of clear sky convergence and cloud ice mixing ratio, while cloud lifetime is dominated by sedimentation. Taken together, this diagnostic expresses anvil cloud fraction as a function of five physically measurable quantities. Of these, clear‐sky convergence changes drive the anvil cloud reduction with warming while an increase in cloud ice mixing ratio buffers the decrease. Accordingly, this study provides a theoretical foundation upon which the Stability‐Iris hypothesis can be tested.
+          , 
+            Plain Language Summary
+            
+              Horizontally extensive “anvil clouds” are formed in the upper troposphere by horizontal outflow from deep convection. As the planet warms, the environment around anvil clouds becomes more buoyantly stable, reducing horizontal outflow. The Stability‐Iris hypothesis (Bony et al., 2016,
+              https://doi.org/10.1073/pnas.1601472113
+              ) suggests that this reduced outflow will cause anvil cloud extent to decrease under warmer conditions. In this paper, we derive an equation linking horizontal outflow to anvil clouds and find that the Stability‐Iris mechanism is indeed responsible for the warming induced anvil cloud reduction in our numerical simulations.
+            
+          , 
+            Key Points
+            
+              
+                
+                  Anvil cloud fraction can be reliably diagnosed as a product of detrainment and cloud lifetime
+                
+                
+                  Detrainment can be diagnosed as a product of clear sky convergence and cloud ice mixing ratio
+                
+                
+                  The trend of declining clear sky convergence is the strongest contributor to the trend of declining anvil cloud fraction with warming},
+	language = {en},
+	number = {15},
+	urldate = {2026-09-08},
+	journal = {Geophys. Res. Lett.},
+	author = {Beydoun, Hassan and Caldwell, Peter M. and Hannah, Walter M. and Donahue, Aaron S.},
+	month = aug,
+	year = {2021},
+	pages = {e2021GL094049},
 }
