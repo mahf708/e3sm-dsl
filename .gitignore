@@ -1,6 +1,5 @@
 .DS_Store
-*.pdf
-*.png
+tex/*.pdf
 
 # LaTeX build artifacts
 *.aux

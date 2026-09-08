@@ -1,69 +1,4 @@
-%% Copernicus Publications Manuscript Preparation Template for LaTeX Submissions
-%% ---------------------------------
-%% This template should be used for copernicus.cls
-%% The class file and some style files are bundled in the Copernicus Latex Package, which can be downloaded from the different journal webpages.
-%% For further assistance please contact Copernicus Publications at: production@copernicus.org
-%% https://publications.copernicus.org/for_authors/manuscript_preparation.html
-
-
-%% Please use the following documentclass and journal abbreviations for preprints and final revised papers.
-
-%% 2-column papers and preprints
 \documentclass[gmd, manuscript]{copernicus}
-
-
-
-%% Journal abbreviations (please use the same for preprints and final revised papers)
-
-
-% Advances in Geosciences (adgeo)
-% Advances in Radio Science (ars)
-% Advances in Science and Research (asr)
-% Advances in Statistical Climatology, Meteorology and Oceanography (ascmo)
-% Aerosol Research (ar)
-% Annales Geophysicae (angeo)
-% Archives Animal Breeding (aab)
-% Atmospheric Chemistry and Physics (acp)
-% Atmospheric Measurement Techniques (amt)
-% Biogeosciences (bg)
-% Climate of the Past (cp)
-% DEUQUA Special Publications (deuquasp)
-% Earth Surface Dynamics (esurf)
-% Earth System Dynamics (esd)
-% Earth System Science Data (essd)
-% E&G Quaternary Science Journal (egqsj)
-% EGUsphere (egusphere) | This is only for EGUsphere preprints submitted without relation to an EGU journal.
-% Earth Observation (eo)
-% European Journal of Mineralogy (ejm)
-% Geochronology (gchron)
-% Geographica Helvetica (gh)
-% Geoscience Communication (gc)
-% Geoscientific Instrumentation, Methods and Data Systems (gi)
-% Geoscientific Model Development (gmd)
-% History of Geo- and Space Sciences (hgss)
-% Hydrology and Earth System Sciences (hess)
-% Journal of Bone and Joint Infection (jbji)
-% Journal of Environmentally Compatible Air Transport System (jecats)
-% Journal of Micropalaeontology (jm)
-% Journal of Sensors and Sensor Systems (jsss)
-% Magnetic Resonance (mr)
-% Mechanical Sciences (ms)
-% Natural Hazards and Earth System Sciences (nhess)
-% Nonlinear Processes in Geophysics (npg)
-% Ocean Science (os)
-% Polarforschung - Journal of the German Society for Polar Research (polf)
-% Proceedings of the International Association of Hydrological Sciences (piahs)
-% Proceedings of the International Ocean Drilling Programme (piodp)
-% Safety of Nuclear Waste Disposal (sand)
-% Scientific Drilling (sd)
-% SOIL (soil)
-% Solid Earth (se)
-% State of the Planet (sp)
-% The Cryosphere (tc)
-% Weather and Climate Dynamics (wcd)
-% Web Ecology (we)
-% Wind Energy Science (wes)
-
 
 %% \usepackage commands included in the copernicus.cls:
 %\usepackage[german, english]{babel}
@@ -79,50 +14,59 @@
 %\usepackage{rotating}
 
 
+%% booktabs is not loaded by copernicus.cls; the observable-class table needs it.
+\usepackage{booktabs}
+%% array gives \newcolumntype and the >{\raggedright\arraybackslash}p{} specs
+%% used by the wide comparison tables.
+\usepackage{array}
+
+%% Macros used by this manuscript.
+%% \unit is provided by copernicus.cls; \cov avoids depending on \operatorname.
+\newcommand{\cov}{\mathrm{cov}}
+\newcommand{\dexpr}{\texttt{dexpr}}
+%% Long \texttt{} strings (paths, expressions) have no hyphenation points and
+%% overflow the text block. \bk is an invisible break opportunity.
+\newcommand{\bk}{\discretionary{}{}{}}
+\newcommand{\todo}[1]{\textbf{[TODO: #1]}}
+%% Any claim that depends on an experiment not yet run MUST be wrapped in
+%% \planned. Nothing wrapped in \planned may be reported as a result.
+\newcommand{\planned}[1]{\textbf{[PLANNED, NOT YET RUN: #1]}}
+
+\graphicspath{{./}{../}{../fig/}}
+
 \begin{document}
 
-\title{Diagnostic Specific Language for the Energy Exascale Earth System Model}
+\title{Composable runtime diagnostics for Earth system models}
 
 
 % \Author[affil]{given_name}{surname}
 
 \Author[1][naser.mahfouz@pnnl.gov]{Naser}{Mahfouz} %% correspondence author
 \Author[2]{Luca}{Bertagna}
-\Author[3]{Aaron}{Donahue}
-\Author[4]{Peter}{Schwartz}
+\Author[3]{Peter}{Schwartz}
+\Author[4]{Aaron}{Donahue}
 \Author[5]{Jeffrey}{Johnson}
-\Author[6]{Noel}{Keen}
-\Author[3]{Hassan}{Beydoun}
-\Author[2]{Benjamin}{Hillman}
-\Author[3]{Walter}{Hannah}
-\Author[3]{Peter}{Bogenschutz}
-\Author[1]{Johannes}{M\"ulmentst\"adt}
-\Author[7]{More}{Friends}
+\Author[6]{Xylar}{Asay-Davis}
+\Author[7]{Brian}{O'Neil}
+\Author[1]{Andrew}{Gettelman}
+\Author[1]{Susannah}{Burrows}
+\Author[4]{Chengzhu}{Zhang}
+\Author[4]{Peter}{Caldwell}
+\Author[*]{More}{Friends}
 
 \affil[1]{Pacific Northwest National Laboratory, Richland, WA, USA}
 \affil[2]{Sandia National laboratories, Albuquerque, NM, USA}
-\affil[3]{Lawrence Livermore National Laboratory, Livermore, CA, USA}
-\affil[4]{Oak Ridge National Laboratory, Oak Ridge, TN, USA}
+\affil[3]{Oak Ridge National Laboratory, Oak Ridge, TN, USA}
+\affil[4]{Lawrence Livermore National Laboratory, Livermore, CA, USA}
 \affil[5]{Cohere Consulting LLC, Seattle, WA, USA}
-\affil[6]{Lawrence Berkeley National Laboratory, Berkeley, CA, USA}
-\affil[7]{Somewhere on This Bitter Earth, Anywhere, SW, TBE}
-
-%% The [] brackets identify the author with the corresponding affiliation. 1, 2, 3, etc. should be inserted.
-
-%% If an author is deceased, please add \deceased[$Deceased date if applicable$]{$Author number$} (e.g. \deceased[13 November 2015]{2}) at the end of the affiliations. The author number depends on the placement of the author in the author list, e.g. the third author has number 3.
+\affil[6]{Argonne National Laboratory, Lemont, IL, USA}
+\affil[7]{Los Alamos National Laboratory, Los Alamos, NM, USA}
+\affil[*]{Somewhere on This Bitter Earth, Anywhere, SW, TBE}
 
 
-%% If authors contributed equally, please add \equalcontrib{$Author numbers$} (e.g. \equalcontrib{1,3}) at the end of the affiliations. The author number depends on the placement of the author in the author list, e.g. the third author has number 3.
-
-
-
-
-\runningtitle{Diagnostic Specific Language for E3SM}
+\runningtitle{Composable diagnostics for ESMs}
 
 \runningauthor{Mahfouz et al.}
-
-
-
 
 
 \received{}
@@ -141,377 +85,268 @@
 
 
 \begin{abstract}
-Our thesis: We argue diagnostics are mathematical expressions represented by flexible
-compositions of a small set of operators and an algebra over them
-and that they should be evaluated by the model at runtime.
-The result: A scientist can imagine a variable or product and \emph{project} it out
-in a variety of productive ways --- instantaneous or averaged, over an arbitrary time period,
-mapped, masked, or redefined --- without touching the source code.
+
+\todo{tbd}
+
 \end{abstract}
 
-\introduction  %% \introduction[modified heading if necessary]
+\introduction
+\label{sec:intro}
 
-\subsection{Diagnostics in ESMs}
-Legacy paradigm: developer-scientists hard-code a fixed menu of diagnostics; everything else is done offline from raw output/archive.
-Adequate for coarse-resolution and/or monthly climatologies. Not scalable/responsive to high-res and high-freq.
+An Earth system model is a set of equations, spatially discretized and temporally stepped forward.
+The model state comprises tens to a few hundreds of fields on a three-dimensional grid, updated every time step.
+Storing the full model state at every time step is impractical due to the sheer volume of data generated.
+For example, the latest release of the Energy Exascale Earth System Model (E3SM) has an atmosphere component with 21\,600 columns and 80 levels with a time step of 30 minutes.
+This amounts to about $7$\,MB per three-dimensional field per sample in single-precision floating-point format ($21\,600\times80\times4$ bytes).
+Carrying $O(100)$ state fields puts a single snapshot near $0.7$\,GB, and writing one every time step for a simulated year ($17\,520$ samples) comes to about $12$\,TB.
+Horizontal resolution refinement makes the data volume grow in a roughly cubic manner with respect to the refinement factor \citep{schar_kilometer-scale_2020}, assuming horizontal refinement is uniform and the temporal resolution is modified to ensure stability, while the vertical resolution remains constant.
 
-\subsection{Why higher-res/higher-freq breaks it}
-The cost of writing raw state at the frequency the science needs grows exponentially. Post-processing stops being cheap and starts being the bottleneck.
-Some diagnostics (e.g., conditional moments) are simply intractable offline at high resolution.
+In practice, the raw archive is never saved in its entirety.
+Instead, a carefully chosen subset of the model state is written according to an output list agreed upon in advance, supplemented with developer-written derived diagnostics, at a specified cadence, and at a specified precision.
+Customarily, the set of all available output variables is hardcoded in the model and cannot be changed without modifying the source code, and oftentimes changes are inspired by community-driven model intercomparison projects or by specific scientific questions.
+It is normally treated as a logistical decision, a question of how much disk is available and for how long, but it is also a scientific one.
+The output list acts as an observation operator applied to the simulated trajectory, and it fixes a priori which questions the model output dataset can answer a priori.
 
-\subsection{Two responses/options}
-\begin{enumerate}
-  \item Incremental/streaming: keep the legacy outputs and get cleverer about moving and compressing them.
-  \item Fundamental: push the diagnostic computation into the runtime, minimize I/O, and expose a composable vocabulary.
-\end{enumerate}
+The arrangement was comfortable while models had coarse resolution, but at storm- and cloud-resolving resolution, challenges arise due to both the output volume \citep{balaji_requirements_2018} and the questions we want to ask of the model.
+A coarse model is evaluated for its mean state, the seasonal cycle, and top-of-atmosphere energy balance, where monthly or daily mean of a fixed field list serves the purpose well enough.
+A kilometer-scale model enables further specialized evaluations, e.g., the organization of convection, updraft and downdraft statistics, cloud lifecycle, precipitation and wind extremes, and boundary-layer structure \citep{caldwell_convectionpermitting_2021,donahue_exascale_2024}.
+The latter required conditional means, higher moments, distributions, event frequencies, threshold exceedances, and quantities tracked across time steps, which are not captured by simple averages.
+They need samples co-located in space and time at the model's own frequency, conditioning on masks the model forms on its own grid, and in some cases state carried from one step to the next.
+None of them commutes with the averaging and remapping that make output affordable either, so each one has to be formed at a particular point in the pipeline: a cloud mask diagnosed on the native grid and then remapped is a different quantity from a mask applied after remapping, and a covariance is not recoverable from separately averaged inputs at any cadence.
+Where a derived quantity is computed, and in what order relative to averaging and remapping, is therefore part of its definition, and an output list that fixes that order has already fixed the observable.
+So the archive has to grow and the archive has to carry different things, and those two pressures do not point in the same direction.
 
-Broadly, option 1 is the direction of everyone (including the European centers).
-E3SM's C++ atmosphere has been taking option 2 incrementally for two years without naming it.
-This manuscript names it, and we propose to formalize it.
+Model output is also increasingly a training set rather than an archive a person reads.
+Component and full-model emulators stand in as economical alternatives to physics models; process emulators replace uncertain or expensive parameterizations inside a running model; output emulators handle downscaling, bias correction, or projection onto impact space; and foundation models are fit to corpora assembled from many sources.
+Training datasets require higher frequency and different variables than human analysis did --- tendencies, fluxes, co-located pairs, and process-level state --- and they want a great deal of it.
+A training set prepared from model output is one more selection applied to the simulated trajectory, and it carries the same property as any other: whatever the preparation discarded is not available to the model being trained.
 
-\subsection{Scope of this paper}
-We describe what the E3SM atmosphere does today, argue that it already constitutes a
-diagnostics-specific language, show a gallery of science it enables.
-We close by arguing for generalizing it across the model.
+Taken together, these pressures are an argument for rethinking how model output is designed.
+In this manuscript, we argue for a system in which a diagnostic is a mathematical expression, a flexible composition of a small set of operators with an algebra over them, evaluated by the model at runtime while the full state is still in memory.
+When implemented, such a system allows a scientist to imagine a variable or a product and project it out in a variety of productive ways without touching the source code: instantaneous or averaged, over an arbitrary time period, mapped, masked, reduced, or redefined.
+
+\subsection{Related works}
+\label{sec:related_works}
+
+Outside Earth system modeling, other domains reduce before persistence as a matter of course, and several give users an operator algebra over the live state to do it with.
+The LHCb experiment reconstructs and selects physics candidates inside its trigger and discards the raw event, retaining an object about an order of magnitude smaller \citep{aaij_comprehensive_2019}.
+Molecular dynamics composes on-the-fly computes and time averages, so a study need not write trajectories \citep{thompson_lammps_2022}.
+Computational fluid dynamics evaluates user-written field expressions at run time, with dimensions and region masks, and can decline to store the result \citep{weller_tensorial_1998}.
+Astrophysical analysis frameworks carry units through recursively defined derived fields \citep{turk_yt_2011}.
+Runtime-analysis frameworks provide expression systems, including just-in-time-compiled derived fields \citep{ayachit_paraview_2015,childs_ascent_2022,godoy_adios_2020}.
+Compiling a declarative mathematical specification down to domain-specific code is long-established in finite-element software \citep{alnaes_unified_2014}, and separating what is computed from how it is scheduled is standard practice in domain-specific compilers \citep{ragan-kelley_halide_2013}.
+
+Within Earth system modeling, the capability appears at four placements, each further from the model than the last.
+Model-integrated diagnostic managers expose a registered catalogue with reductions \citep{valcke_flexible_2012,danabasoglu_community_2020,kern_diagnostic_2016,adams_lfric_2019}, with conditional sampling and budgets available through specialized namelist interfaces \citep{wan_condidiag10_2022} and arbitrary code through plugin interfaces \citep{hartung_icon_2025}.
+These sit closest to the state, but what the user selects from is a catalogue of quantities somebody compiled in advance, so a new quantity is a source change.
+I/O middleware carries an output algebra on the write path: XIOS provides arithmetic and elementary functions on fields, six temporal operations, and axis and domain transformations \citep{yepes-arbos_evaluation_2022}, MultIO provides configurable in-memory processing pipelines \citep{sarmany_multio_2024}, and ADIOS2 supports writer-side derived variables \citep{godoy_adios_2020}.
+Streaming architectures publish model state to external consumers while a simulation runs: nextGEMS made common data handling and analysis a first-order part of multi-model kilometer-scale development, EVE frames simulation and data services as a federated infrastructure, and the Destination Earth Climate Digital Twin couples high-resolution production with streaming and downstream processing through One-Pass and AQUA \citep{segura_nextgems_2025,stevens_earth_2024,doblas-reyes_destination_2026,grayson_statistical_2025,nurisso_aqua_2026}.
+Post-processing on the archive is the furthest placement and the usual one.
+Offline analysis is supported by mature tooling in which fields are labeled objects and operators compose over them \citep{zender_analysis_2008,hoyer_xarray_2017,zhang_e3sm_2022}, and a scientist can express essentially any quantity there without touching model source code.
+What post-processing does not have is the model state.
+It reproduces a quantity exactly whenever that quantity is determined by what was already written, and it cannot when it is not.
+The persistence boundary falls between the third placement and the fourth, and reduction before persistence is the direction the field is moving.
+
+Read against our thesis of Sect.~\ref{sec:intro}, these systems supply two of its three parts but rarely all three at once.
+The algebra is widely available, and so is evaluation before persistence.
+What is scarce is an algebra whose operators are the model's own and whose operands are live model state: XIOS applies its algebra to fields exported into its own data model, with units, masks and grids reconstructed there rather than owned by the component; streaming systems operate on a harmonized state after publication; and diagnostic managers own both the state and the semantics but offer a catalogue rather than an algebra.
+Since several of these systems also run while a simulation is running, the distinction is not online versus offline, but which state is still available when the operation executes and who owns the operators that act on it.
+For that reason we follow \citet{childs_terminology_2020} in avoiding ``in situ'', whose established usage covers analysis over a published mesh representation, and we use ``model-integrated'' or ``in-model'' throughout.
+Dedalus and Oceananigans come closest, letting a user write an output quantity as an expression and evaluate it during the run, with Oceananigans compiling it to a GPU kernel \citep{burns_dedalus_2020,ramadhan_oceananigansjl_2020}; they are written in languages with a runtime (Python and Julia, respectively), which a compiled production Earth system component does not have.
+
+\subsection{Contributions}
+\label{sec:contribs}
+
+We implement the system described above in the C++ atmosphere component of E3SM \citep{donahue_exascale_2024}, written on Kokkos for performance portability \citep{trott_kokkos_2022}.
+A user writes a derived quantity as an expression over model fields in the output configuration; a standalone parser turns the string into a syntax tree, and host model validates it against a vocabulary it owns and lowers it onto its existing compiled diagnostics.
+The operators are familiar ones for atmospheric modeling: interpolation to levels, pressure surfaces and height surfaces; horizontal, zonal and vertical reduction; vertical derivatives; conditional sampling; histograms; arithmetic; and a one-step temporal shift.
+Composed with the stream's own instantaneous, mean, minimum and maximum accumulation, they cover the projections named in Sect.~\ref{sec:intro}.
+
+Our system has four properties as follows.
+It is user-defined: the quantity is named in a configuration file, not added to model source code, so asking a new question does not require a review and a merge.
+It is inline: evaluation happens inside the component's own time-step machinery, against live field objects, so a quantity can be formed before the reductions that would destroy it.
+It is GPU-friendly: the objects that execute are the model's own Kokkos kernels operating on the same device-resident allocations the model's processes use, so nothing is copied to the host and no second array model is introduced.
+It is flexible but bounded: the operators compose freely, while the vocabulary itself is deliberately small, which is a governance property rather than an expressiveness win.
+
+This implementation is a start rather than a finished system.
+We do not demonstrate a model-independent language, port the capability to another component yet, implement an optimizer or a typed intermediate representation, or fuse expressions for performance.
+Our goal is to integrate this capability in the C++ ocean component of E3SM \citep{petersen_ocean_2026} soon, and from there to the rest of the model components.
+Additionally, we aim to expand the vocabulary to cover more derived quantities and operations that scientists commonly use in their analyses on an as-needed basis.
+
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Design and implementation}
+\label{sec:design}
+
+\emph{Fields as contracts.}
+The C++ atmosphere component of E3SM holds its state in \texttt{Field} objects rather than raw pointers.
+\begin{equation}
+  F_\sigma = (x;\ n, \tau, \sigma)
+  \qquad
+  \sigma = (g,l,d,u,m)
+  \label{eq:field}
+\end{equation}
+A field $F$ carries numerical storage pointer $x$ together with a name $n$, tracking timestamp $\tau$, and a contract $\sigma$.
+The contract contains a grid $g$, a labeled layout $l$, a data type $d$, units $u$, and an optional validity mask $m$.
+The contract is not decorative, because field operations must respect the constraints it encodes.
+Two fields can be added only if their units agree; multiplying them multiplies their units; a vertical reduction removes a dimension tag; interpolating to a pressure level introduces a mask where the level lies outside the column.
+Like prognostic processes in the model, diagnostic processes take fields as input and produce fields as output.
+A control driver orchestrates the execution of these processes, ensuring that dependencies are satisfied and that the model advances in a consistent manner.
+Because the output reenters the model's field repository, it can be used as input for subsequent processes or diagnostics, enabling a composable workflow without additional machinery.
+A diagnostic also hashes the requested output time stamp together with the tracking time stamps of its inputs and skips computation if the hash is unchanged, so a diagnostic shared by several streams at one model time runs once, and a static repository keyed by request name lets a second stream reuse an object the first stream built.
 
 
-\section{Diagnostics in EAMxx today}
-History and orientation: new model, new language, new runtime, etc. inspired a new way of doing stuff.
-Explain the software philosophy at the outset.
+\emph{Output pipeline.}
+The output driver evaluates diagnostics on the source grid, then applies optional vertical remapping, then optional horizontal remapping, then updates the stream's temporal accumulator, then writes through SCORPIO \citep{krishna_scorpio_2025}.
+\begin{equation}
+  Y = \mathcal{A}_t\,\mathcal{R}_\text{h}\,\mathcal{R}_\text{v}\,\mathcal{D}_\text{e}[X(t)],
+  \label{eq:pipeline}
+\end{equation}
+These stages are defined in Eq.~\eqref{eq:pipeline}, with absent stages resolving to identity.
+The written expression controls $\mathcal{D}_\text{e}$ and stream settings control the rest.
+Averaging and remapping do not commute with nonlinear operations: a user who writes \texttt{qv*T\_mid} in an averaged, horizontally remapped stream gets $\mathcal{A}_t\mathcal{R}_\text{h}[q_vT]$, which is neither $\mathcal{A}_t[\mathcal{R}_\text{h} q_v\cdot\mathcal{R}_\text{h} T]$ nor $\mathcal{R}_\text{h}\mathcal{A}_t[q_vT]$.
+The order is a design decision made to cleanly separate concerns in the output pipeline. 
 
-\subsection{The diagnostic abstraction}
-A diagnostic declares its input fields as data, is handed them by the orchestrator, and
-produces one or more output fields.
-Lazily evaluated and timestamp-cached, so shared subexpressions
-compute once.
-Registration through a factory.
+\emph{Global grammar, local semantics.}
+Even though composition is possible in the absence of a formal grammar, it quickly leads to ambiguity and confusion.
+Hence, introducing our diagnostic expression parser, \dexpr\,--- a lexer, a \citet{pratt_top_1973} parser, an abstract syntax tree (AST), a renderer that prints an abstract syntax tree back to canonical text, and a call validator.
+It is a minimalist C++ library with no dependencies, and it does not know what a field, a grid, or a time step is.
+The component decides what means something, through a function registry in which it declares each callable with its name, arity, accepted keywords, and an example of the call as written.
+The registry validates itself at construction, such that each example must parse, must call the function that declared it, and must satisfy its own arity and keyword rules, so an inconsistent declaration fails when the registry is built rather than when a user first writes it.
+The division is the design's main portable idea: The grammar is global, the semantics are local, and two components can share a parser without sharing a single physical operator.
 
-\subsection{The operator algebra}
-List/table what we have:
-vertical extraction (levels, pressure, height);
-horizontal reduction (global, zonal bins);
-vertical reduction (sum/avg, mass- and thickness-weighted);
-vertical derivatives;
-time operators/management (instantaneous, average, accumulate, reset, etc.);
-binary/unary arithmetics;
-conditional sampling;
-histograms;
-simulators;
-named physical diagnostics.
-The algebra is closed: operators consume fields and produce fields, so they chain/compose (if they respect the expected input/output conventions).
-
-\subsection{Surface syntax and the parser}
-Tell story of slow beginnings, then formalization through a proper grammar, opting for xarray-inspired syntax.
+\emph{Surface syntax.}
+The syntax was formalized based on xarray \citep{hoyer_xarray_2017} spelling where possible.
+An expression written to a file must be named with \texttt{:=}, because the expression itself may be not a valid NetCDF \citep{rew_netcdf_1990} variable name, and expressions in an \texttt{aliases} section are intermediates: built, usable by name, but not written.
 \begin{verbatim}
-((omega*qv).derivative(dx=dz,dims=['col'])).where(omega <= -10)
+fields:
+  physics_pg2:
+    aliases:
+      - warm_T         := T_mid.where(T_mid>273.15)
+    field_names:
+      - q_flux         := (qc+qv)*p_mid
+      - warm_T_colavg  := warm_T.mean('lev')
 \end{verbatim}
-
-\subsection{Multi-output diagnostics, caching, and (instrument) simulators}
-
-\subsection{Evaluation: from yaml entry to variable on disk}
-
-
-\subsection{Caveats and rough edges}
-We force users to know grids, layouts, and (si) units for now.
-
-\section{Gallery: science we did not plan for}
-{The central evidence for the thesis. Each subsection: the scientific question, the expression
-the user wrote, what it would have cost under the legacy paradigm, and --- critically --- the fact
-that it was a byproduct of the software philosophy rather than a designed feature.}
-
-\subsection{Horizontal and vertical reductions; e.g., RCE sims}
-
-\subsection{Arbitrary slice reductions; e.g., cloud-top quantities}
-
-\subsection{Conditional moments and correlations: e.g., Cess2}
-{Capturing $\overline{uv}$ instead of $\overline{u}\,\overline{v}$ without storing the full high-frequency state.}
-
-\subsection{Instability and oscillatory surface analyses; e.g., surface coupling}
-
-\section{Costs and benefits}
-
-\subsection{Runtime cost versus I/O cost}
-A few benchmarks
-
-\subsection{Minimizing regrets: the fear of missing/forgetting data}
-The rational objection is ``what if I did not ask for the right thing because I couldn't have possibly anticipated wanting to analyze xyz phenomena?''
-Responses: raw output is still available to anyone who wants it; saving well-chosen \emph{intermediates} can also help; and the regret space will shrink as the algebra space expands.
-
-\subsection{Relationship to streaming and compression}
-All these are complementary, not competitive.
+The variable \texttt{q\_flux} carries \texttt{(qc+qv)*p\_mid} as its \texttt{alias\_of} attribute.
+Operands may be model fields, other expressions, named physical constants such as \texttt{P0} and \texttt{Rgas}, or numeric literals.
+Precedence is conventional, so \texttt{qc+qv*p\_mid} means \texttt{qc+(qv*p\_mid)} --- which is in fact rejected at construction due to units mismatch --- whereas \texttt{(qc+qv)*p\_mid} is admissible.
+Table~\ref{tab:vocabulary} gives the vocabulary.
+For now, there are no loops, user-defined functions, mutation, external state, or dynamic code loading, and every operation has a compiled implementation, a field contract, and a unit test.
+The vocabulary is deliberately small at this stage, a governance choice rather than a limit of the design, and we expect it to grow.
+Each entry in the table is a primitive $D_k$, one of the operators the diagnostic stage $\mathcal{D}_e$ of Eq.~(\ref{eq:pipeline}) composes, and each is applied in two steps: a signature ($\Sigma_k$) that asks, from the contracts alone, whether a request means anything and what contract its result would carry, and, where that succeeds, the computation of the numbers,
+\begin{equation}
+\begin{aligned}
+  \Sigma_k &: (\sigma_1,\ldots,\sigma_n;\ \theta)
+        \rightharpoonup (\sigma'_1,\ldots,\sigma'_m),\\
+  D_k(\theta) &: F_{\sigma_1}\times\cdots\times F_{\sigma_n}
+        \longrightarrow F_{\sigma'_1}\times\cdots\times F_{\sigma'_m}.
+\end{aligned}
+\label{eq:ops}
+\end{equation}
+Fields $F_\sigma$ carry a contract $\sigma$ as defined in Eq.~(\ref{eq:field}); and $\theta\in\Theta_k$ is the primitive's non-field arguments, e.g., the level in \texttt{X.isel(lev=k)}.
+The signature does not succeed on requests the model rejects, such as adding two fields whose units differ, and note the output contracts are different from the input contracts, as they are computed by the primitive rather than inherited.
+The signature is checked once, on the host, when the expression is lowered at stream setup; the second line is what runs on the device at each output event.
+Every primitive registered today has $m=1$, which the diagnostic interface enforces, but nothing in the algebra requires it and we intend to relax that restriction.
 
 
-\section{Toward a general and unified diagnostics language}
+\begin{table*}[t]
+\caption{Diagnostic-expression vocabulary. The last column states the
+important restrictions rather than the full field contract. Eleven methods are
+registered; the four arithmetic operators, unary negation and the six
+comparisons complete the surface language.}
+\label{tab:vocabulary}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{%
+  >{\raggedright\arraybackslash}p{1.8cm}
+  >{\raggedright\arraybackslash}p{4.4cm}
+  >{\raggedright\arraybackslash}p{3.3cm}
+  >{\raggedright\arraybackslash}X}
+\tophline
+Category & Expression & Diagnostic & Semantics and restrictions \\
+\middlehline
+Arithmetic & \texttt{a+b}, \texttt{a-b}, \texttt{a*b}, \texttt{a/b} & \texttt{BinaryOp} & Elementwise. Two field operands need the same layout and data type; \texttt{+}, \texttt{-} need equal units; \texttt{*}, \texttt{/} compose units. \\
+Negation & \texttt{-a} & \texttt{BinaryOp} & Lowered to \texttt{(-1)*a}. \\
+Indexing & \texttt{X.isel(lev=k)} & \texttt{FieldAtLevel} & \texttt{lev=0} is the model top, \texttt{lev=-1} the bottom; other negative indices are rejected. \\
+Pressure interpolation & \texttt{X.interp(p\_mid=500,}\newline\texttt{\ \ units='hPa')} & \texttt{FieldAtPressure\bk Level} & Units default to Pa; columns where the level is outside the range are masked. \\
+Height interpolation & \texttt{X.interp(z\_mid=10,}\newline\texttt{\ \ reference='surface')} & \texttt{FieldAtHeight} & Units default to m; \texttt{reference} is \texttt{'sealevel'} (default) or \texttt{'surface'}. \\
+Horizontal mean & \texttt{X.mean('col')} & \texttt{HorizAvg} & Always area weighted; removes the column dimension; masked inputs renormalize by valid weight; collective over the diagnostic's communicator. \\
+Vertical contraction & \texttt{X.mean('lev')},\newline\texttt{X.sum('lev')} & \texttt{VertContract} & Removes the level dimension; \texttt{weights='dp'} or \texttt{'dz'}; masked means use a valid-weight denominator; rank-local. \\
+Conditional sampling & \texttt{X.where(qv>0.01)} & \texttt{Conditional\bk Sampling} & One comparison; invalid elements receive a mask and a fill value. \\
+Vertical derivative & \texttt{X.derivative('p\_mid')} & \texttt{VertDerivative} & With respect to \texttt{'p\_mid'} or \texttt{'z\_mid'}. \\
+Histogram & \texttt{X.histogram(}\newline\texttt{\ \ bins=[0,1,2])} & \texttt{Histogram} & Non-negative decimal bin edges. \\
+Zonal mean & \texttt{X.zonal\_mean(bins=20)} & \texttt{ZonalAvg} & Area-weighted mean within latitude bands; collective. \\
+Temporal shift & \texttt{X.shift(time=1)} & \texttt{FieldPrev} & Value at the previous step; xarray's sign convention; only one step of history is kept. \\
+Time normalization & \texttt{X.over\_dt()} & \texttt{FieldOverDt} & Divides by the step length; requires $\Delta t>0$, so not at $t_0$. \\
+Backward tendency & \texttt{X.tend()} & composition & Expands to \texttt{(X-X.shift(time=1)).over\_dt()}. \\
+\bottomhline
+\end{tabularx}
+\normalsize
+\end{table*}
 
+\emph{Lowering by name.}
+A request reaches the output manager as a string, and the manager splits an optional \texttt{name :=} prefix, tries the remainder through \dexpr, which tokenizes and parses it; the AST is then validated against the model's registry.
+Only the root node is translated into one diagnostic class and one parameter list; its operands are rendered back to canonical text and recorded as the diagnostic's input field names, so the ordinary dependency resolver finds them missing from the field manager and sends each through the same factory, which parses it in turn (Fig.~\ref{fig:dag}).
+Recursion through names, rather than through a graph object, builds the whole expression graph using no data structure the output manager did not already have.
+Canonical rendering is what makes the name a reliable key, such that \texttt{qv > 0.01} and \texttt{qv>0.01} name the same diagnostic when nested, while the top-level request string is kept verbatim because it is also the output variable's name.
+Validation is layered so that a failure is reported by the layer that knows why it failed.
+This way, \dexpr\ catches malformed syntax, unknown functions, wrong arity, and keyword errors; the model's front end catches operators with no diagnostic, comparisons outside \texttt{where}, and roots that are not fields; construction catches incompatible units, layouts, data types, and grids; and stream setup catches unnamed expressions, duplicate aliases, unresolvable dependencies, and integer output.
+No phase silently repairs a request, and there is no algebraic rewriting.
+The variable in the file carries the user's output name, the derived units, and an \texttt{alias\_of} attribute holding the requested expression, which is expression-level provenance rather than the fully resolved graph; complete reconstruction additionally requires the stream configuration and the run record.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=.75\linewidth]{../fig/concentric-shells.png}
-    \caption{A vision for a future E3SM of lots of shared cores, but thin interfaces in each component ...}
-    \label{fig:placeholder}
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.42\textwidth]{../fig/fig02_expression_dag.png}
+\caption{Dependency graph for
+\texttt{moist\_column\_T := T\_mid.where(qv>0.01).mean('lev')}, built by name
+resolution alone. Lowering translates only the root, a vertical contraction,
+and records its operand as the string \texttt{T\_mid.where((qv>0.01))};
+resolving that name builds the conditional-sampling node beneath it, whose own
+operands \texttt{T\_mid} and \texttt{qv} are model fields and end the
+recursion. The comparison yields a validity mask; conditional sampling yields a
+masked field; the vertical mean computes a masked numerator and a valid-weight
+denominator. Stream-level remapping and temporal accumulation follow the graph,
+in the order of Eq.~(\ref{eq:pipeline}).}
+\label{fig:dag}
 \end{figure}
 
-\subsection{The principles, stated plainly}
+\subsection{Experiments}
+\label{sec:experiments}
+Experiment list/methods...
 
-\begin{enumerate}
-  \item Diagnostics should not be hard-coded.
-  \item They should be parsed at runtime, and evaluated where the data already lives (on the GPU).
-  \item They should be flexible and composable --- small operators, closed algebra.
-  \item They should be arbitrarily projectable.
-  \item They should be useful for science and hypothesis testing.
-  \item They should be useful for logistics, e.g.\ saving disk space.
-  \item They should be useful for extensions, e.g.\ AI/hybrid modeling.
-\end{enumerate}
+\section{Results}
+\label{sec:results}
 
-\subsection{Generalization: what is atmosphere-specific and what is not}
-How to deal with component-specific conventions and extrapolate.
-
-\subsection{Unification vision: a shared core with component-specific shells}
-The concentric-shell picture: a shared parser, a kernelizer and kernel library, and a base driver, with component drivers building on top for their own needs.
-Components adopt rather than reinvent.
-
-\subsection{Implications for the AI era}
-Emulator-ready outputs by construction; hybrid and online-learning workflows; the longer-term
-``kernelizer'' idea of generating kernels on the fly from human-readable expressions.
-
-\subsection{A counterpoint to the prevailing winds}
+\todo{tbd}
 
 
-\conclusions  %% \conclusions[modified heading if necessary]
-Philosophy of software innovation enables more science than it was designed to do, and a productive cycle of science/software co-evolution...
+\conclusions
+\label{sec:conclusions}
 
-%% The following commands are for the statements about the availability of data sets and/or software code corresponding to the manuscript.
-%% It is strongly recommended to make use of these sections in case data sets and/or software code have been part of your research the article is based on.
-
-
-\codedataavailability{TEXT} %% use this section when having data sets and software code available
+\todo{tbd}
 
 
+\noappendix
 
 
-\appendix
-\section{}    %% Appendix A
+\codeavailability{\todo{tbd}}
 
-\subsection{}     %% Appendix A1, A2, etc.
+\dataavailability{\todo{tbd}}
 
+\authorcontribution{\todo{tbd}}
 
-\noappendix       %% use this to mark the end of the appendix section. Otherwise the figures might be numbered incorrectly (e.g. 10 instead of 1).
+\competinginterests{The authors declare that they have no competing interests.
+\todo{tbd}}
 
-%% Regarding figures and tables in appendices, the following two options are possible depending on your general handling of figures and tables in the manuscript environment:
-
-%% Option 1: If you sorted all figures and tables into the sections of the text, please also sort the appendix figures and appendix tables into the respective appendix sections.
-%% They will be correctly named automatically.
-
-%% Option 2: If you put all figures after the reference list, please insert appendix tables and figures after the normal tables and figures.
-%% To rename them correctly to A1, A2, etc., please add the following commands in front of them:
-
-\appendixfigures  %% needs to be added in front of appendix figures
-
-\appendixtables   %% needs to be added in front of appendix tables
-
-%% Please add \clearpage between each table and/or figure. Further guidelines on figures and tables can be found below.
-
-
-
-\authorcontribution{TEXT} %% this section is mandatory
-
-\competinginterests{TEXT} %% this section is mandatory even if you declare that no competing interests are present
-
-\disclaimer{TEXT} %% optional section
+\disclaimer{\todo{tbd}}
 
 \begin{acknowledgements}
-TEXT
+\todo{tbd}
 \end{acknowledgements}
 
 
-
-
-%% REFERENCES
-
-%% The reference list is compiled as follows:
-
-\begin{thebibliography}{}
-
-\bibitem[AUTHOR(YEAR)]{LABEL1}
-REFERENCE 1
-
-\bibitem[AUTHOR(YEAR)]{LABEL2}
-REFERENCE 2
-
-\end{thebibliography}
-
-%% Since the Copernicus LaTeX package includes the BibTeX style file copernicus.bst,
-%% authors experienced with BibTeX only have to include the following two lines:
-%%
-%% \bibliographystyle{copernicus}
-%% \bibliography{example.bib}
-%%
-%% URLs and DOIs can be entered in your BibTeX file as:
-%%
-%% URL = {http://www.xyz.org/~jones/idx_g.htm}
-%% DOI = {10.5194/xyz}
-
-
-%% LITERATURE CITATIONS
-%%
-%% command                        & example result
-%% \citet{jones90}|               & Jones et al. (1990)
-%% \citep{jones90}|               & (Jones et al., 1990)
-%% \citep{jones90,jones93}|       & (Jones et al., 1990, 1993)
-%% \citep[p.~32]{jones90}|        & (Jones et al., 1990, p.~32)
-%% \citep[e.g.,][]{jones90}|      & (e.g., Jones et al., 1990)
-%% \citep[e.g.,][p.~32]{jones90}| & (e.g., Jones et al., 1990, p.~32)
-%% \citeauthor{jones90}|          & Jones et al.
-%% \citeyear{jones90}|            & 1990
-
-
-
-%% FIGURES
-
-%% When figures and tables are placed at the end of the MS (article in one-column style), please add \clearpage
-%% between bibliography and first table and/or figure as well as between each table and/or figure.
-
-% The figure files should be labelled correctly with Arabic numerals (e.g. fig01.jpg, fig02.png).
-
-
-%% ONE-COLUMN FIGURES
-
-%%f
-%\begin{figure}[t]
-%\includegraphics[width=8.3cm]{FILE NAME}
-%\caption{TEXT}
-%\end{figure}
-%
-%%% TWO-COLUMN FIGURES
-%
-%%f
-%\begin{figure*}[t]
-%\includegraphics[width=12cm]{FILE NAME}
-%\caption{TEXT}
-%\end{figure*}
-%
-%
-%%% TABLES
-%%%
-%%% The different columns must be seperated with a & command and should
-%%% end with \\ to identify the column brake.
-%
-%%% ONE-COLUMN TABLE
-%
-%%t
-%\begin{table}[t]
-%\caption{TEXT}
-%\begin{tabular}{column = lcr}
-%\tophline
-%
-%\middlehline
-%
-%\bottomhline
-%\end{tabular}
-%\belowtable{} % Table Footnotes
-%\end{table}
-%
-%%% TWO-COLUMN TABLE
-%
-%%t
-%\begin{table*}[t]
-%\caption{TEXT}
-%\begin{tabular}{column = lcr}
-%\tophline
-%
-%\middlehline
-%
-%\bottomhline
-%\end{tabular}
-%\belowtable{} % Table Footnotes
-%\end{table*}
-%
-%%% LANDSCAPE TABLE
-%
-%%t
-%\begin{sidewaystable*}[t]
-%\caption{TEXT}
-%\begin{tabular}{column = lcr}
-%\tophline
-%
-%\middlehline
-%
-%\bottomhline
-%\end{tabular}
-%\belowtable{} % Table Footnotes
-%\end{sidewaystable*}
-%
-%
-%%% MATHEMATICAL EXPRESSIONS
-%
-%%% All papers typeset by Copernicus Publications follow the math typesetting regulations
-%%% given by the IUPAC Green Book (IUPAC: Quantities, Units and Symbols in Physical Chemistry,
-%%% 2nd Edn., Blackwell Science, available at: http://old.iupac.org/publications/books/gbook/green_book_2ed.pdf, 1993).
-%%%
-%%% Physical quantities/variables are typeset in italic font (t for time, T for Temperature)
-%%% Indices which are not defined are typeset in italic font (x, y, z, a, b, c)
-%%% Items/objects which are defined are typeset in roman font (Car A, Car B)
-%%% Descriptions/specifications which are defined by itself are typeset in roman font (abs, rel, ref, tot, net, ice)
-%%% Abbreviations from 2 letters are typeset in roman font (RH, LAI)
-%%% Vectors are identified in bold italic font using \vec{x}
-%%% Matrices are identified in bold roman font
-%%% Multiplication signs are typeset using the LaTeX commands \times (for vector products, grids, and exponential notations) or \cdot
-%%% The character * should not be applied as mutliplication sign
-%
-%
-%%% EQUATIONS
-%
-%%% Single-row equation
-%
-%\begin{equation}
-%
-%\end{equation}
-%
-%%% Multiline equation
-%
-%\begin{align}
-%& 3 + 5 = 8\\
-%& 3 + 5 = 8\\
-%& 3 + 5 = 8
-%\end{align}
-%
-%
-%%% MATRICES
-%
-%\begin{matrix}
-%x & y & z\\
-%x & y & z\\
-%x & y & z\\
-%\end{matrix}
-%
-%
-%%% ALGORITHM
-%
-%\begin{algorithm}
-%\caption{...}
-%\label{a1}
-%\begin{algorithmic}
-%...
-%\end{algorithmic}
-%\end{algorithm}
-%
-%
-%%% CHEMICAL FORMULAS AND REACTIONS
-%
-%%% For formulas embedded in the text, please use \chem{}
-%
-%%% The reaction environment creates labels including the letter R, i.e. (R1), (R2), etc.
-%
-%\begin{reaction}
-%%% \rightarrow should be used for normal (one-way) chemical reactions
-%%% \rightleftharpoons should be used for equilibria
-%%% \leftrightarrow should be used for resonance structures
-%\end{reaction}
-%
-%
-%%% PHYSICAL UNITS
-%%%
-%%% Please use \unit{} and apply the exponential notation (e.g. 20\,\unit{W\,m^{-2}})
-
+\bibliographystyle{copernicus}
+\bibliography{refs}
 
 \end{document}

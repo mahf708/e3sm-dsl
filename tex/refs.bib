@@ -34,58 +34,6 @@
 	file = {J Adv Model Earth Syst - 2020 - Leung - An Introduction to the E3SM Special Collection  Goals  Science Drivers  Development:/Users/mahf708/Zotero/storage/M7FIDPQ5/J Adv Model Earth Syst - 2020 - Leung - An Introduction to the E3SM Special Collection  Goals  Science Drivers  Development.pdf:application/pdf},
 }
 
-@article{donahue_exascale_2024,
-	title = {To {Exascale} and {Beyond}—{The} {Simple} {Cloud}‐{Resolving} {E3SM} {Atmosphere} {Model} ({SCREAM}), a {Performance} {Portable} {Global} {Atmosphere} {Model} for {Cloud}‐{Resolving} {Scales}},
-	volume = {16},
-	issn = {1942-2466, 1942-2466},
-	url = {https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2024MS004314},
-	doi = {10.1029/2024MS004314},
-	abstract = {Abstract
-            The new generation of heterogeneous CPU/GPU computer systems offer much greater computational performance but are not yet widely used for climate modeling. One reason for this is that traditional climate models were written before GPUs were available and would require an extensive overhaul to run on these new machines. In addition, even conventional “high–resolution” simulations don't currently provide enough parallel work to keep GPUs busy, so the benefits of such overhaul would be limited for the types of simulations climate scientists are accustomed to. The vision of the Simple Cloud‐Resolving Energy Exascale Earth System (E3SM) Atmosphere Model (SCREAM) project is to create a global atmospheric model with the architecture to efficiently use GPUs and horizontal resolution sufficient to fully take advantage of GPU parallelism. After 5 years of model development, SCREAM is finally ready for use. In this paper, we describe the design of this new code, its performance on both CPU and heterogeneous machines, and its ability to simulate real‐world climate via a set of four 40 day simulations covering all 4 seasons of the year.
-          , 
-            Plain Language Summary
-            This paper describes the design and development of a 3 km version of the Energy Exascale Earth System Model (E3SM) atmosphere model, which has been fully rewritten in C++ using the Kokkos library for performance portability. This newly rewritten model is able to take advantage of the state–of–the–science high performance computing systems which use graphical processor units (GPUs) to mitigate much of the computational expense which typically plagues high–resolution global modeling. Taking advantage of this high–performance we are able to run four seasons of simulations at 3 km global resolution. We discuss the biases, including the diurnal cycle, by comparing model results with satellite and Atmospheric Radiation Measurement ground‐based site data.
-          , 
-            Key Points
-            
-              
-                
-                  Describes the C++/Kokkos implementation of the Simple Cloud–Resolving E3SM Atmosphere Model (SCREAMv1)
-                
-                
-                  SCREAMv1 leverages GPUs to surpass one simulated year per compute day at global 3 km resolution
-                
-                
-                  High resolution improves some meso‐scale features and the diurnal cycle but large‐scale biases require improvement across all four seasons},
-	language = {en},
-	number = {7},
-	urldate = {2026-09-07},
-	journal = {J. Adv. Model Earth Syst.},
-	author = {Donahue, A. S. and Caldwell, P. M. and Bertagna, L. and Beydoun, H. and Bogenschutz, P. A. and Bradley, A. M. and Clevenger, T. C. and Foucar, J. and Golaz, C. and Guba, O. and Hannah, W. and Hillman, B. R. and Johnson, J. N. and Keen, N. and Lin, W. and Singh, B. and Sreepathi, S. and Taylor, M. A. and Tian, J. and Terai, C. R. and Ullrich, P. A. and Yuan, X. and Zhang, Y.},
-	month = jul,
-	year = {2024},
-	pages = {e2024MS004314},
-	file = {Full Text PDF:/Users/mahf708/Zotero/storage/NPT5SLGN/Donahue et al. - 2024 - To Exascale and Beyond—The Simple Cloud‐Resolving E3SM Atmosphere Model (SCREAM), a Performance Port.pdf:application/pdf},
-}
-
-@article{trott_kokkos_2022,
-	title = {Kokkos 3: {Programming} {Model} {Extensions} for the {Exascale} {Era}},
-	volume = {33},
-	copyright = {https://creativecommons.org/licenses/by/4.0/legalcode},
-	issn = {1045-9219, 1558-2183, 2161-9883},
-	shorttitle = {Kokkos 3},
-	url = {https://ieeexplore.ieee.org/document/9485033/},
-	doi = {10.1109/TPDS.2021.3097283},
-	number = {4},
-	urldate = {2026-09-07},
-	journal = {IEEE Trans. Parallel Distrib. Syst.},
-	author = {Trott, Christian R. and Lebrun-Grandie, Damien and Arndt, Daniel and Ciesko, Jan and Dang, Vinh and Ellingwood, Nathan and Gayatri, Rahulkumar and Harvey, Evan and Hollman, Daisy S. and Ibanez, Dan and Liber, Nevin and Madsen, Jonathan and Miles, Jeff and Poliakoff, David and Powell, Amy and Rajamanickam, Sivasankaran and Simberg, Mikael and Sunderland, Dan and Turcksin, Bruno and Wilke, Jeremiah},
-	month = apr,
-	year = {2022},
-	pages = {805--817},
-	file = {Full Text:/Users/mahf708/Zotero/storage/A6XSKAG7/Trott et al. - 2022 - Kokkos 3 Programming Model Extensions for the Exascale Era.pdf:application/pdf},
-}
-
 @article{hoyer_xarray_2017,
 	title = {xarray: {N}-{D} labeled {Arrays} and {Datasets} in {Python}},
 	volume = {5},
@@ -102,78 +50,6 @@
 	year = {2017},
 	pages = {10},
 	file = {Full Text PDF:/Users/mahf708/Zotero/storage/7MMTHQVB/Hoyer and Hamman - 2017 - xarray N-D labeled Arrays and Datasets in Python.pdf:application/pdf},
-}
-
-@article{wan_condidiag10_2022,
-	title = {{CondiDiag1}.0: a flexible online diagnostic tool for conditional sampling and budget analysis in the {E3SM} atmosphere model ({EAM})},
-	volume = {15},
-	copyright = {https://creativecommons.org/licenses/by/4.0/},
-	issn = {1991-9603},
-	shorttitle = {{CondiDiag1}.0},
-	url = {https://gmd.copernicus.org/articles/15/3205/2022/},
-	doi = {10.5194/gmd-15-3205-2022},
-	abstract = {Abstract. Numerical models used in weather and climate prediction take into account
-a comprehensive set of atmospheric processes (i.e., phenomena) such as the
-resolved and unresolved fluid dynamics, radiative transfer,
-cloud and aerosol life cycles, and mass or energy exchanges with
-the Earth's surface.
-In order to identify model deficiencies and improve predictive skills,
-it is important to obtain process-level understanding of the
-interactions between different processes.
-Conditional sampling and budget analysis are powerful tools
-for process-oriented model evaluation, but they often require
-tedious ad hoc coding and large amounts of instantaneous model output,
-resulting in inefficient use of human and computing resources.
-This paper presents an online diagnostic tool that addresses
-this challenge by monitoring model variables in a generic manner
-as they evolve within the time integration cycle. The tool is convenient to use.
-It allows users to select sampling conditions and
-specify monitored variables at run time.
-Both the evolving values of the model variables and their increments
-caused by different atmospheric processes can be monitored and archived.
-Online calculation of vertical integrals is also supported.
-Multiple sampling conditions can be monitored in a single simulation
-in combination with unconditional sampling.
-The paper explains in detail the design and implementation of the tool in
-the Energy Exascale Earth System Model (E3SM) version 1.
-The usage is demonstrated through three examples:
-a global budget analysis of dust aerosol mass concentration,
-a composite analysis of sea salt emission and its dependency
-on surface wind speed,
-and a conditionally sampled relative humidity budget.
-The tool is expected to be easily portable to
-closely related atmospheric models that use the same or
-similar data structures
-and time integration methods.},
-	language = {en},
-	number = {8},
-	urldate = {2026-09-07},
-	journal = {Geosci. Model Dev.},
-	author = {Wan, Hui and Zhang, Kai and Rasch, Philip J. and Larson, Vincent E. and Zeng, Xubin and Zhang, Shixuan and Dixon, Ross},
-	month = apr,
-	year = {2022},
-	pages = {3205--3231},
-	file = {Full Text PDF:/Users/mahf708/Zotero/storage/RPYQZQ6Q/Wan et al. - 2022 - CondiDiag1.0 a flexible online diagnostic tool for conditional sampling and budget analysis in the.pdf:application/pdf},
-}
-
-@article{yepes-arbos_evaluation_2022,
-	title = {Evaluation and optimisation of the {I}/{O} scalability for the next generation of {Earth} system models: {IFS} {CY43R3} and {XIOS} 2.0 integration as a case study},
-	volume = {15},
-	copyright = {https://creativecommons.org/licenses/by/4.0/},
-	issn = {1991-9603},
-	shorttitle = {Evaluation and optimisation of the {I}/{O} scalability for the next generation of {Earth} system models},
-	url = {https://gmd.copernicus.org/articles/15/379/2022/},
-	doi = {10.5194/gmd-15-379-2022},
-	abstract = {Abstract. Earth system models have considerably increased their spatial resolution to solve more complex problems and achieve more realistic solutions. However, this generates an enormous amount of model data which requires proper management. Some Earth system models use inefficient sequential input/output (I/O) schemes that do not scale well when many parallel resources are used. In order to address this issue, the most commonly adopted approach is to use scalable parallel I/O solutions that offer both computational performance and efficiency. In this paper we analyse the I/O process of the European Centre for Medium-Range Weather Forecasts (ECMWF) operational Integrated Forecasting System (IFS) CY43R3. IFS can use two different output schemes: a parallel I/O server developed by Météo-France used operationally and an obsolete sequential I/O scheme. The latter is the only scheme that is being exposed by the OpenIFS variant of IFS. “Downstream” Earth system models that have adopted older versions of an IFS derivative as a component – such as the EC-Earth 3 climate model – also face a bottleneck due to the limited I/O capabilities and performance of the sequential output scheme. Moreover, it is often desirable to produce grid-point-space Network Common Data Format (NetCDF) files instead of the IFS native spectral and grid-point output fields in General Regularly-distributed Information in Binary form (GRIB), which requires the development of model-specific post-processing tools. We present the integration of the XML Input/Output Server (XIOS) 2.0 into IFS CY43R3. XIOS is an asynchronous Message Passing Interface (MPI) I/O server that offers features especially targeted at climate models: NetCDF output files, inline diagnostics, regridding, and, when properly configured, the capability to produce CMOR-compliant data. We therefore expect our work to reduce the computational cost of data-intensive (high-resolution) climate runs, thereby shortening the critical path of EC-Earth 4 experiments. The performance evaluation suggests that the use of XIOS 2.0 in IFS CY43R3 to output data achieves an adequate performance as well, outperforming the sequential I/O scheme. Furthermore, when we also take into account the post-processing task, which is needed to convert GRIB files to NetCDF files and also transform IFS spectral output fields to grid-point space, our integration not only surpasses the sequential output scheme but also the operational IFS I/O server.},
-	language = {en},
-	number = {2},
-	urldate = {2026-09-07},
-	journal = {Geosci. Model Dev.},
-	author = {Yepes-Arbós, Xavier and Van Den Oord, Gijs and Acosta, Mario C. and Carver, Glenn D.},
-	month = jan,
-	year = {2022},
-	pages = {379--394},
-	file = {Full Text PDF:/Users/mahf708/Zotero/storage/IHQEZXKW/Yepes-Arbós et al. - 2022 - Evaluation and optimisation of the IO scalability for the next generation of Earth system models I.pdf:application/pdf},
 }
 
 @article{kern_diagnostic_2016,
@@ -553,7 +429,7 @@ available. Finally, several applications for the E3SM Diags module were introduc
 	file = {PDF:/Users/mahf708/Zotero/storage/D9J6SQFU/Thompson et al. - 2022 - LAMMPS - a flexible simulation tool for particle-based materials modeling at the atomic, meso, and c.pdf:application/pdf},
 }
 
-@article{Comput. Phys.,
+@article{weller_tensorial_1998,
 	title = {A tensorial approach to computational continuum mechanics using object-oriented techniques},
 	volume = {12},
 	issn = {0894-1866},
@@ -563,7 +439,7 @@ available. Finally, several applications for the E3SM Diags module were introduc
 	language = {en},
 	number = {6},
 	urldate = {2026-09-07},
-	journal = {Computers in Physics},
+	journal = {Comput. Phys.},
 	author = {Weller, H. G. and Tabor, G. and Jasak, H. and Fureby, C.},
 	month = nov,
 	year = {1998},
@@ -625,25 +501,6 @@ available. Finally, several applications for the E3SM Diags module were introduc
 	file = {PDF:/Users/mahf708/Zotero/storage/2MT9PZKJ/Muthukrishnan - 2005 - Data Streams Algorithms and Applications.pdf:application/pdf},
 }
 
-@article{doblas-reyes_destination_2026,
-	title = {The {Destination} {Earth} digital twin for climate change adaptation},
-	volume = {19},
-	copyright = {https://creativecommons.org/licenses/by/4.0/},
-	issn = {1991-9603},
-	url = {https://gmd.copernicus.org/articles/19/2821/2026/},
-	doi = {10.5194/gmd-19-2821-2026},
-	abstract = {Abstract. The Climate Change Adaptation Digital Twin (Climate DT), developed as part of the European Commission's Destination Earth (DestinE) initiative, sets up an operational system for producing multi-decadal, multi-model global climate projections and translating climate data into climate impact information to support adaptation efforts. This system delivers data with local granularity at spatial resolutions of 5–10 km and hourly outputs, leading to globally consistent information at scales that matter for decision-making. It also enables the testing of what-if scenarios such as high-resolution storylines, which are physically consistent global simulations of extreme events under different climate conditions and provide contextual insights to support concrete adaptation decisions. They support the generation of more equitable (understood as accessible and relevant across regions) climate information. The Climate DT is built on cutting-edge infrastructure, expert collaboration, and digital innovation. It is designed to support on-demand responses to policy questions, with quantified uncertainty. It will foster interactivity by allowing users to influence simulation design, model output portfolios, and application integration through co-design. AI-based tools, including emulators and chatbots, are being developed in parallel to enhance climate information access. Sector-specific applications are embedded in the system to synchronously translate climate data into tailored climate-impact indicators, with examples provided for energy, water, and forest management. The applications have been co-designed with informed users. A unified, cross-platform workflow defines the orchestration of all components, which is handled by a single workflow manager and relies on containerised components, facilitating automation, portability, maintainability, and traceability. Data management is unified using standard grids (HEALPix), ensuring consistency and easing data usability under a strict governance policy. Streaming enables real-time data use by the data consumers and unlocks access to the unprecedented data wealth produced by the high-resolution simulations. Monitoring tools provide real-time quality control of data and model outputs and enable continuous assessment of the realism of the climate simulations during Climate DT operation. The compute-intensive system is powered by world-class supercomputing capabilities through a strategic partnership with the European High Performance Computing Joint Undertaking (EuroHPC). Despite high computational demands, the Climate DT sets a new benchmark for delivering equitable, credible, and actionable climate information. It complements existing initiatives like CMIP, CORDEX, and national and European climate services, and aligns with global climate science goals to support climate adaptation.},
-	language = {en},
-	number = {7},
-	urldate = {2026-09-07},
-	journal = {Geosci. Model Dev.},
-	author = {Doblas-Reyes, Francisco J. and Kontkanen, Jenni and Sandu, Irina and Acosta, Mario and Al Turjmam, Mohammed Hussam and Alsina-Ferrer, Ivan and Andrés-Martínez, Miguel and Anerdi, Costanza and Arriola, Leo and Axness, Marvin and Batlle Martín, Marc and Bauer, Peter and Becker, Tobias and Beltrán, Daniel and Beyer, Sebastian and Bockelmann, Hendryk and Bretonnière, Pierre-Antoine and Cabaniols, Sebastien and Caprioli, Silvia and Castrillo, Miguel and Chandrasekar, Aparna and Cheedela, Suvarchal and Correal, Victor and Danovaro, Emanuele and Davini, Paolo and Enkovaara, Jussi and Frauen, Claudia and Früh, Barbara and Gaya Àvila, Aina and Ghinassi, Paolo and Ghosh, Rohit and Ghosh, Supriyo and González, Iker and Grayson, Katherine and Griffith, Matthew and Hadade, Ioan and Haine, Christopher and Hartick, Carl and Haus, Utz-Uwe and Hearne, Shane and Järvinen, Heikki and Jiménez, Bernat and John, Amal and Juchem, Marlin and Jung, Thomas and Kegel, Jessica and Kelbling, Matthias and Keller, Kai and Kinoshita, Bruno and Kiszler, Theresa and Klocke, Daniel and Kluft, Lukas and Koldunov, Nikolay and Kölling, Tobias and Kolstela, Joonas and Kornblueh, Luis and Kosukhin, Sergey and Lacima-Nadolnik, Aleksander and Leal Rojas, Jeisson Javier and Lehtiranta, Jonni and Lunttila, Tuomas and Luoma, Anna and Manninen, Pekka and Medvedev, Alexey and Milinski, Sebastian and Mohammed, Ali and Müller, Sebastian and Naryanappa, Devaraju and Nazarova, Natalia and Niemelä, Sami and Niraula, Bimochan and Nortamo, Henrik and Nummelin, Aleksi and Nurisso, Matteo and Ortega, Pablo and Paronuzzi, Stella and Pedruzo-Bagazgoitia, Xabier and Pelletier, Charles and Peña, Carlos and Polade, Suraj and Pradhan, Himansu Kesari and Quintanilla, Rommel and Quintino, Tiago and Rackow, Thomas and Räisänen, Jouni and Rajput, Maqsood Mubarak and Redler, René and Reuter, Balthasar and Rocha Monteiro, Nuno and Roura-Adserias, Francesc and Ruppert, Silva and Sayed, Susan and Schnur, Reiner and Sharma, Tanvi and Sidorenko, Dmitry and Sievi-Korte, Outi and Soret, Albert and Steger, Christian and Stevens, Bjorn and Streffing, Jan and Sunny, Jaleena and Tenorio, Luiggi and Thober, Stephan and Tigerstedt, Ulf and Tinto, Oriol and Tonttila, Juha and Tuomenvirta, Heikki and Tuppi, Lauri and Van Thielen, Ginka and Vitali, Emanuele and Von Hardenberg, Jost and Wagner, Ingo and Wedi, Nils and Wehner, Jan and Willner, Sven and Yepes-Arbós, Xavier and Ziemen, Florian and Zimmermann, Janos},
-	month = apr,
-	year = {2026},
-	pages = {2821--2848},
-	file = {Full Text PDF:/Users/mahf708/Zotero/storage/UTLGI648/Doblas-Reyes et al. - 2026 - The Destination Earth digital twin for climate change adaptation.pdf:application/pdf},
-}
-
 @article{grayson_statistical_2025,
 	title = {Statistical summaries for streamed data from climate simulations: one-pass algorithms},
 	volume = {18},
@@ -662,26 +519,6 @@ available. Finally, several applications for the E3SM Diags module were introduc
 	year = {2025},
 	pages = {5873--5890},
 	file = {Full Text:/Users/mahf708/Zotero/storage/PD59IG4T/Grayson et al. - 2025 - Statistical summaries for streamed data from climate simulations one-pass algorithms.pdf:application/pdf},
-}
-
-@article{nurisso_aqua_2026,
-	title = {{AQUA} v1.0.0: {The} {Application} for {QUality} {Assessment} for the {Climate} {Change} {Adaptation} {Digital} {Twin} – the core engine},
-	volume = {19},
-	copyright = {https://creativecommons.org/licenses/by/4.0/},
-	issn = {1991-9603},
-	shorttitle = {{AQUA} v1.0.0},
-	url = {https://gmd.copernicus.org/articles/19/7725/2026/},
-	doi = {10.5194/gmd-19-7725-2026},
-	abstract = {Abstract. The increasing availability of kilometer-scale climate simulations presents major challenges for data access, processing, and analysis due to the unprecedented volume and heterogeneity of the outputs. Different data formats, structures, and metadata conventions, require dedicated solutions to ensure interoperability and usability. We introduce AQUA (Application for QUality Assessment), a Python-based framework developed within the Climate Change Adaptation Digital Twin of the Destination Earth (DestinE) initiative, designed to support the automated evaluation of high-resolution global climate simulations. Although several diagnostic suites for the analysis of global climate model data are already available, AQUA provides a flexible and modular infrastructure for accessing and processing climate model output across various formats. By building on widely adopted Python libraries, it enables scalable, out-of-core computations. Its design supports integration into automated workflows and user-defined pipelines, facilitating both operational and research-oriented applications. This paper focuses on the architecture and core functionalities of the AQUA core, which handles data ingestion, standardization, and pre-processing. AQUA is open source and actively maintained, and aims to serve as a community tool for robust, reproducible, and efficient climate data analysis across projects and institutions.},
-	language = {en},
-	number = {16},
-	urldate = {2026-09-07},
-	journal = {Geosci. Model Dev.},
-	author = {Nurisso, Matteo and Von Hardenberg, Jost and Cadau, Marco and Caprioli, Silvia and Ghinassi, Paolo and Ghosh, Supriyo and Koldunov, Nikolay and Nazarova, Natalia and Rajput, Maqsood Mubarak and Tovazzi, Emanuele and Davini, Paolo},
-	month = aug,
-	year = {2026},
-	pages = {7725--7740},
-	file = {Full Text:/Users/mahf708/Zotero/storage/FFVFDE7Q/Nurisso et al. - 2026 - AQUA v1.0.0 The Application for QUality Assessment for the Climate Change Adaptation Digital Twin –.pdf:application/pdf},
 }
 
 @article{segura_nextgems_2025,
@@ -741,129 +578,6 @@ available. Finally, several applications for the E3SM Diags module were introduc
 	file = {3659914.3659938:/Users/mahf708/Zotero/storage/8QDNDQEF/3659914.3659938.pdf:application/pdf},
 }
 
-@misc{colingladuenoaa_noaa-gfdlfms_2026,
-	title = {{NOAA}-{GFDL}/{FMS}: 2026.02},
-	copyright = {Creative Commons Attribution 4.0 International},
-	shorttitle = {{NOAA}-{GFDL}/{FMS}},
-	url = {https://zenodo.org/doi/10.5281/zenodo.3700098},
-	doi = {10.5281/ZENODO.3700098},
-	abstract = {[2026.02] - 2026-09-04
-
-Known Issues
-
-
-
-MPP: mpp\_get\_current\_pelist\_legacy  interface change triggers segfault in MOM6 (\#1912)
-
-INTEL: Oneapi 2025.1 is currently unsupported due to an internal compiler error. The -check uninit flag for intel's LLVM compilers(ifx/icx) is also unsupported, see prior release for more information.
-
-Diag Manager Rewrite: See below for known output file differences regarding the new diag manager. The new diag\_manager is disabled by default, so these differences will only be present if use\_modern\_diag is set to true in the diag\_manager\_nml.
-
-BUILD(HDF5): HDF5 version 1.14.3 generates floating point exceptions, and will cause errors if FMS is built with FPE traps enabled. FPE traps are turned on when using the debug target in mkmf.
-
-GCC: version 14.1.0 is unsupported due to a bug with strings that has come up previously in earlier versions. This will be caught by the configure script, but will cause compilation errors if using other build systems.
-
-
-Added
-
-
-
-BUILD: Added support for openacc in both build systems (\#1826)
-
-BUILD: Add nvhpc compiler flags to cmake (\#1743)
-
-CMAKE: Making unit tests optional during CMake install method (\#1850)
-
-CI: Add workflow for Mac OS builds (\#1884)
-
-MPP: Add corner mosaic tests to mpp suite (\#1868)
-
-DIAG\_MANAGER: General Indices: Diag Manager Test (\#1833)
-
-MPP: Add starting\_ensemble\_id namelist option (\#1838)
-
-OFFLOAD: Implement OpenMP offload for do group update (\#1782)
-
-
-Changed
-
-
-
-CI: Update CI workflows to gnu 15 image (\#1849)
-
-DOCS: Update fms2\_io docs (\#1840)
-
-DOCS: Updated documentation for horiz\_interp (\#1900)
-
-FMS2\_IO: Generalized indices support in fms2\_io (\#1871)
-
-GRID\_UTILS: Grid utils radius changes with GFS\_CONSTANTS (\#1867)
-
-INTERPOLATOR: Generalized indices: interpolator\_mod (\#1878)
-
-MPP: Update to mpi\_f08 (\#1828)
-
-MPP: Generalized indices updates for mpp\_group\_update (\#1853), feature/general indices gatscat (\#1832), mpp global field updates (\#1806), and MPP\_REDISTRIBUTE (\#1886)
-
-MPP: Generalized indices: Refactor group\_update for improved performance (\#1885)
-
-MPP: Move inverse\_permutation to mpp\_mod (\#1894)
-
-
-Fixed
-
-
-
-CI: Fix identifier of job in Intel OneAPI CI (\#1831) and remove skipped tests from intel CI (\#1848)
-
-DIAG\_MANAGER: DIAG MANAGER: Fixes to zbounds (\#1880)
-
-DIAG\_MANAGER: diag\_manager: reword error message to make it more useful (\#1888)
-
-DIAG\_MANAGER: Implement workarounds for modern diag manager with NVHPC (\#1897)
-
-GRID: Cell measures final fix (\#1854)
-
-MPP: Fix mpp gatherv nonroot alloc (\#1839)
-
-MPP: Allocate dummy arrays to pass to mpp\_gather calls (\#1863)
-
-MPP: Fix mpp\_gather/scatter memory leak (\#1892)
-
-MPP: mpp\_define\_mosaic: Support Case where tile\_id(1){\textgreater}1 (\#1856)
-
-MPP: Update mpp\_do\_redistribute.fh (\#1902)
-
-TIME\_MANAGER: Fix divide by zero in time\_manager (\#1898)
-
-SANITIZER: Fix some errors find by Address Sanitizer (\#1795)
-
-
-Removed
-
-
-
-MPP\_IO: Remove use\_mpp\_io namelist from FMS source code (\#1882)
-
-
-Tag Commit Hashes
-
-
-
-2026.02-alpha1: 1acbd59d4cf542c5f48a0d8c0051335def61e822
-
-2026.02-alpha2: 222f3c6de852b6ba565bd5d6bac55893e92ea106
-
-2026.02-alpha3: 44edc8db82f58b936b1340e491f873768dfc136b
-
-2026.02-beta1: 23dc5e690baa9556239243528f39940059d920af},
-	urldate = {2026-09-07},
-	publisher = {Zenodo},
-	author = {colingladueNOAA and Seth Underwood and uramirez8707 and Tom Robinson and Ryan Mulhall and Rusty Benson and Jess and Zhi Liang and Ray Menzel and Ed Hartnett and Edward Hartnett and MiKyung Lee and gbw-gfdl and Jesse Lentz and Eric and Miguel R Zuniga and slm7826 and Niki Zadeh and Rahul Mahajan and Robert Hallberg and Lauren Chilutti and fpaulot and ganganoaa and Andrew Brooks and Marshall Ward and Vithika Shah and Caitlyn McAllister and Dom Heinzeller and Lucas Harris},
-	month = sep,
-	year = {2026},
-}
-
 @incollection{childs_ascent_2022,
 	address = {Cham},
 	title = {Ascent: {A} {Flyweight} {In} {Situ} {Library} for {Exascale} {Simulations}},
@@ -891,7 +605,7 @@ Tag Commit Hashes
 	doi = {10.1016/j.jpdc.2019.02.007},
 	language = {en},
 	urldate = {2026-09-07},
-	journal = {Journal of Parallel and Distributed Computing},
+	journal = {J. Parallel Distrib. Comput.},
 	author = {Adams, S.V. and Ford, R.W. and Hambley, M. and Hobson, J.M. and Kavčič, I. and Maynard, C.M. and Melvin, T. and Müller, E.H. and Mullerworth, S. and Porter, A.R. and Rezny, M. and Shipway, B.J. and Wong, R.},
 	month = oct,
 	year = {2019},
@@ -925,10 +639,343 @@ Tag Commit Hashes
 	language = {en},
 	number = {2},
 	urldate = {2026-09-07},
-	journal = {J Adv Model Earth Syst},
+	journal = {J. Adv. Model Earth Syst.},
 	author = {Danabasoglu, G. and Lamarque, J.‐F. and Bacmeister, J. and Bailey, D. A. and DuVivier, A. K. and Edwards, J. and Emmons, L. K. and Fasullo, J. and Garcia, R. and Gettelman, A. and Hannay, C. and Holland, M. M. and Large, W. G. and Lauritzen, P. H. and Lawrence, D. M. and Lenaerts, J. T. M. and Lindsay, K. and Lipscomb, W. H. and Mills, M. J. and Neale, R. and Oleson, K. W. and Otto‐Bliesner, B. and Phillips, A. S. and Sacks, W. and Tilmes, S. and Van Kampenhout, L. and Vertenstein, M. and Bertini, A. and Dennis, J. and Deser, C. and Fischer, C. and Fox‐Kemper, B. and Kay, J. E. and Kinnison, D. and Kushner, P. J. and Larson, V. E. and Long, M. C. and Mickelson, S. and Moore, J. K. and Nienhouse, E. and Polvani, L. and Rasch, P. J. and Strand, W. G.},
 	month = feb,
 	year = {2020},
 	pages = {e2019MS001916},
 	file = {Full Text PDF:/Users/mahf708/Zotero/storage/J5XNDV2Z/Danabasoglu et al. - 2020 - The Community Earth System Model Version 2 (CESM2).pdf:application/pdf},
+}
+
+@article{eyring_overview_2016,
+	title = {Overview of the {Coupled} {Model} {Intercomparison} {Project} {Phase} 6 ({CMIP6}) experimental design and organization},
+	volume = {9},
+	copyright = {https://creativecommons.org/licenses/by/3.0/},
+	issn = {1991-9603},
+	url = {https://gmd.copernicus.org/articles/9/1937/2016/},
+	doi = {10.5194/gmd-9-1937-2016},
+	abstract = {Abstract. By coordinating the design and distribution of global climate model simulations of the past, current, and future climate, the Coupled Model Intercomparison Project (CMIP) has become one of the foundational elements of climate science. However, the need to address an ever-expanding range of scientific questions arising from more and more research communities has made it necessary to revise the organization of CMIP. After a long and wide community consultation, a new and more federated structure has been put in place. It consists of three major elements: (1) a handful of common experiments, the DECK (Diagnostic, Evaluation and Characterization of Klima) and CMIP historical simulations (1850–near present) that will maintain continuity and help document basic characteristics of models across different phases of CMIP; (2) common standards, coordination, infrastructure, and documentation that will facilitate the distribution of model outputs and the characterization of the model ensemble; and (3) an ensemble of CMIP-Endorsed Model Intercomparison Projects (MIPs) that will be specific to a particular phase of CMIP (now CMIP6) and that will build on the DECK and CMIP historical simulations to address a large range of specific questions and fill the scientific gaps of the previous CMIP phases. The DECK and CMIP historical simulations, together with the use of CMIP data standards, will be the entry cards for models participating in CMIP. Participation in CMIP6-Endorsed MIPs by individual modelling groups will be at their own discretion and will depend on their scientific interests and priorities. With the Grand Science Challenges of the World Climate Research Programme (WCRP) as its scientific backdrop, CMIP6 will address three broad questions:  – How does the Earth system respond to forcing? – What are the origins and consequences of systematic model biases?  – How can we assess future climate changes given internal climate variability, predictability, and uncertainties in scenarios? This CMIP6 overview paper presents the background and rationale for the new structure of CMIP, provides a detailed description of the DECK and CMIP6 historical simulations, and includes a brief introduction to the 21 CMIP6-Endorsed MIPs.},
+	language = {en},
+	number = {5},
+	urldate = {2026-09-07},
+	journal = {Geosci. Model Dev.},
+	author = {Eyring, Veronika and Bony, Sandrine and Meehl, Gerald A. and Senior, Catherine A. and Stevens, Bjorn and Stouffer, Ronald J. and Taylor, Karl E.},
+	month = may,
+	year = {2016},
+	pages = {1937--1958},
+	file = {Full Text:/Users/mahf708/Zotero/storage/XST2T8CF/Eyring et al. - 2016 - Overview of the Coupled Model Intercomparison Project Phase 6 (CMIP6) experimental design and organi.pdf:application/pdf},
+}
+
+@article{caldwell_convectionpermitting_2021,
+	title = {Convection‐{Permitting} {Simulations} {With} the {E3SM} {Global} {Atmosphere} {Model}},
+	volume = {13},
+	issn = {1942-2466, 1942-2466},
+	url = {https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2021MS002544},
+	doi = {10.1029/2021MS002544},
+	abstract = {Abstract
+            
+              This paper describes the first implementation of the Δ
+              x
+               = 3.25 km version of the Energy Exascale Earth System Model (E3SM) global atmosphere model and its behavior in a 40‐day prescribed‐sea‐surface‐temperature simulation (January 20 through February 28, 2020). This simulation was performed as part of the DYnamics of the Atmospheric general circulation Modeled On Non‐hydrostatic Domains (DYAMOND) Phase 2 model intercomparison. Effective resolution is found to be
+              
+              the horizontal dynamics grid resolution despite using a coarser grid for physical parameterizations. Despite this new model being in an immature and untuned state, moving to 3.25 km grid spacing solves several long‐standing problems with the E3SM model. In particular, Amazon precipitation is much more realistic, the frequency of light and heavy precipitation is improved, agreement between the simulated and observed diurnal cycle of tropical precipitation is excellent, and the vertical structure of tropical convection and coastal stratocumulus look good. In addition, the new model is able to capture the frequency and structure of important weather events (e.g., tropical cyclones, extratropical cyclones including atmospheric rivers, and cold air outbreaks). Interestingly, this model does
+              not
+              get rid of the erroneous southern branch of the intertropical convergence zone nor the tendency for strongest convection to occur over the Maritime Continent rather than the West Pacific, both of which are classic climate model biases. Several other problems with the simulation are identified, underscoring the fact that this model is a work in progress.
+            
+          , 
+            Plain Language Summary
+            This paper describes the new global 3.25 km version of the Energy Exascale Earth System Model (E3SM) atmosphere model and its behavior in a 40‐day northern‐hemisphere wintertime simulation. In exchange for huge computational expense, this high‐resolution model avoids many but not all biases common in lower‐resolution models. It also captures several types of extreme weather that would simply not be resolved in lower‐resolution models. Several opportunities for further development are identified.
+          , 
+            Key Points
+            
+              
+                
+                  Describes the Simple Cloud‐Resolving E3SM Atmosphere Model (SCREAM)
+                
+                
+                  
+                    SCREAM performs well in a 40‐day boreal winter simulation at 3.25 km Δ
+                    x
+                  
+                
+                
+                  Resolving deep convection solves many long‐standing climate model biases},
+	language = {en},
+	number = {11},
+	urldate = {2026-09-07},
+	journal = {J. Adv. Model Earth Syst.},
+	author = {Caldwell, P. M. and Terai, C. R. and Hillman, B. and Keen, N. D. and Bogenschutz, P. and Lin, W. and Beydoun, H. and Taylor, M. and Bertagna, L. and Bradley, A. M. and Clevenger, T. C. and Donahue, A. S. and Eldred, C. and Foucar, J. and Golaz, J.‐C. and Guba, O. and Jacob, R. and Johnson, J. and Krishna, J. and Liu, W. and Pressel, K. and Salinger, A. G. and Singh, B. and Steyer, A. and Ullrich, P. and Wu, D. and Yuan, X. and Shpund, J. and Ma, H.‐Y. and Zender, C. S.},
+	month = nov,
+	year = {2021},
+	pages = {e2021MS002544},
+	file = {Submitted Version:/Users/mahf708/Zotero/storage/8RJ78JB4/Caldwell et al. - 2021 - Convection‐Permitting Simulations With the E3SM Global Atmosphere Model.pdf:application/pdf},
+}
+
+@article{doblas-reyes_destination_2026,
+	title = {The {Destination} {Earth} digital twin for climate change adaptation},
+	volume = {19},
+	copyright = {https://creativecommons.org/licenses/by/4.0/},
+	issn = {1991-9603},
+	url = {https://gmd.copernicus.org/articles/19/2821/2026/},
+	doi = {10.5194/gmd-19-2821-2026},
+	abstract = {Abstract. The Climate Change Adaptation Digital Twin (Climate DT), developed as part of the European Commission's Destination Earth (DestinE) initiative, sets up an operational system for producing multi-decadal, multi-model global climate projections and translating climate data into climate impact information to support adaptation efforts. This system delivers data with local granularity at spatial resolutions of 5–10 km and hourly outputs, leading to globally consistent information at scales that matter for decision-making. It also enables the testing of what-if scenarios such as high-resolution storylines, which are physically consistent global simulations of extreme events under different climate conditions and provide contextual insights to support concrete adaptation decisions. They support the generation of more equitable (understood as accessible and relevant across regions) climate information. The Climate DT is built on cutting-edge infrastructure, expert collaboration, and digital innovation. It is designed to support on-demand responses to policy questions, with quantified uncertainty. It will foster interactivity by allowing users to influence simulation design, model output portfolios, and application integration through co-design. AI-based tools, including emulators and chatbots, are being developed in parallel to enhance climate information access. Sector-specific applications are embedded in the system to synchronously translate climate data into tailored climate-impact indicators, with examples provided for energy, water, and forest management. The applications have been co-designed with informed users. A unified, cross-platform workflow defines the orchestration of all components, which is handled by a single workflow manager and relies on containerised components, facilitating automation, portability, maintainability, and traceability. Data management is unified using standard grids (HEALPix), ensuring consistency and easing data usability under a strict governance policy. Streaming enables real-time data use by the data consumers and unlocks access to the unprecedented data wealth produced by the high-resolution simulations. Monitoring tools provide real-time quality control of data and model outputs and enable continuous assessment of the realism of the climate simulations during Climate DT operation. The compute-intensive system is powered by world-class supercomputing capabilities through a strategic partnership with the European High Performance Computing Joint Undertaking (EuroHPC). Despite high computational demands, the Climate DT sets a new benchmark for delivering equitable, credible, and actionable climate information. It complements existing initiatives like CMIP, CORDEX, and national and European climate services, and aligns with global climate science goals to support climate adaptation.},
+	language = {en},
+	number = {7},
+	urldate = {2026-09-07},
+	journal = {Geosci. Model Dev.},
+	author = {Doblas-Reyes, Francisco J. and Kontkanen, Jenni and Sandu, Irina and Acosta, Mario and Al Turjmam, Mohammed Hussam and Alsina-Ferrer, Ivan and Andrés-Martínez, Miguel and Anerdi, Costanza and Arriola, Leo and Axness, Marvin and Batlle Martín, Marc and Bauer, Peter and Becker, Tobias and Beltrán, Daniel and Beyer, Sebastian and Bockelmann, Hendryk and Bretonnière, Pierre-Antoine and Cabaniols, Sebastien and Caprioli, Silvia and Castrillo, Miguel and Chandrasekar, Aparna and Cheedela, Suvarchal and Correal, Victor and Danovaro, Emanuele and Davini, Paolo and Enkovaara, Jussi and Frauen, Claudia and Früh, Barbara and Gaya Àvila, Aina and Ghinassi, Paolo and Ghosh, Rohit and Ghosh, Supriyo and González, Iker and Grayson, Katherine and Griffith, Matthew and Hadade, Ioan and Haine, Christopher and Hartick, Carl and Haus, Utz-Uwe and Hearne, Shane and Järvinen, Heikki and Jiménez, Bernat and John, Amal and Juchem, Marlin and Jung, Thomas and Kegel, Jessica and Kelbling, Matthias and Keller, Kai and Kinoshita, Bruno and Kiszler, Theresa and Klocke, Daniel and Kluft, Lukas and Koldunov, Nikolay and Kölling, Tobias and Kolstela, Joonas and Kornblueh, Luis and Kosukhin, Sergey and Lacima-Nadolnik, Aleksander and Leal Rojas, Jeisson Javier and Lehtiranta, Jonni and Lunttila, Tuomas and Luoma, Anna and Manninen, Pekka and Medvedev, Alexey and Milinski, Sebastian and Mohammed, Ali and Müller, Sebastian and Naryanappa, Devaraju and Nazarova, Natalia and Niemelä, Sami and Niraula, Bimochan and Nortamo, Henrik and Nummelin, Aleksi and Nurisso, Matteo and Ortega, Pablo and Paronuzzi, Stella and Pedruzo-Bagazgoitia, Xabier and Pelletier, Charles and Peña, Carlos and Polade, Suraj and Pradhan, Himansu Kesari and Quintanilla, Rommel and Quintino, Tiago and Rackow, Thomas and Räisänen, Jouni and Rajput, Maqsood Mubarak and Redler, René and Reuter, Balthasar and Rocha Monteiro, Nuno and Roura-Adserias, Francesc and Ruppert, Silva and Sayed, Susan and Schnur, Reiner and Sharma, Tanvi and Sidorenko, Dmitry and Sievi-Korte, Outi and Soret, Albert and Steger, Christian and Stevens, Bjorn and Streffing, Jan and Sunny, Jaleena and Tenorio, Luiggi and Thober, Stephan and Tigerstedt, Ulf and Tinto, Oriol and Tonttila, Juha and Tuomenvirta, Heikki and Tuppi, Lauri and Van Thielen, Ginka and Vitali, Emanuele and Von Hardenberg, Jost and Wagner, Ingo and Wedi, Nils and Wehner, Jan and Willner, Sven and Yepes-Arbós, Xavier and Ziemen, Florian and Zimmermann, Janos},
+	month = apr,
+	year = {2026},
+	pages = {2821--2848},
+	file = {Full Text PDF:/Users/mahf708/Zotero/storage/YBYLUWRN/Doblas-Reyes et al. - 2026 - The Destination Earth digital twin for climate change adaptation.pdf:application/pdf},
+}
+
+@article{donahue_exascale_2024,
+	title = {To {Exascale} and {Beyond}—{The} {Simple} {Cloud}‐{Resolving} {E3SM} {Atmosphere} {Model} ({SCREAM}), a {Performance} {Portable} {Global} {Atmosphere} {Model} for {Cloud}‐{Resolving} {Scales}},
+	volume = {16},
+	issn = {1942-2466, 1942-2466},
+	url = {https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2024MS004314},
+	doi = {10.1029/2024MS004314},
+	abstract = {Abstract
+            The new generation of heterogeneous CPU/GPU computer systems offer much greater computational performance but are not yet widely used for climate modeling. One reason for this is that traditional climate models were written before GPUs were available and would require an extensive overhaul to run on these new machines. In addition, even conventional “high–resolution” simulations don't currently provide enough parallel work to keep GPUs busy, so the benefits of such overhaul would be limited for the types of simulations climate scientists are accustomed to. The vision of the Simple Cloud‐Resolving Energy Exascale Earth System (E3SM) Atmosphere Model (SCREAM) project is to create a global atmospheric model with the architecture to efficiently use GPUs and horizontal resolution sufficient to fully take advantage of GPU parallelism. After 5 years of model development, SCREAM is finally ready for use. In this paper, we describe the design of this new code, its performance on both CPU and heterogeneous machines, and its ability to simulate real‐world climate via a set of four 40 day simulations covering all 4 seasons of the year.
+          , 
+            Plain Language Summary
+            This paper describes the design and development of a 3 km version of the Energy Exascale Earth System Model (E3SM) atmosphere model, which has been fully rewritten in C++ using the Kokkos library for performance portability. This newly rewritten model is able to take advantage of the state–of–the–science high performance computing systems which use graphical processor units (GPUs) to mitigate much of the computational expense which typically plagues high–resolution global modeling. Taking advantage of this high–performance we are able to run four seasons of simulations at 3 km global resolution. We discuss the biases, including the diurnal cycle, by comparing model results with satellite and Atmospheric Radiation Measurement ground‐based site data.
+          , 
+            Key Points
+            
+              
+                
+                  Describes the C++/Kokkos implementation of the Simple Cloud–Resolving E3SM Atmosphere Model (SCREAMv1)
+                
+                
+                  SCREAMv1 leverages GPUs to surpass one simulated year per compute day at global 3 km resolution
+                
+                
+                  High resolution improves some meso‐scale features and the diurnal cycle but large‐scale biases require improvement across all four seasons},
+	language = {en},
+	number = {7},
+	urldate = {2026-09-07},
+	journal = {J Adv Model Earth Syst},
+	author = {Donahue, A. S. and Caldwell, P. M. and Bertagna, L. and Beydoun, H. and Bogenschutz, P. A. and Bradley, A. M. and Clevenger, T. C. and Foucar, J. and Golaz, C. and Guba, O. and Hannah, W. and Hillman, B. R. and Johnson, J. N. and Keen, N. and Lin, W. and Singh, B. and Sreepathi, S. and Taylor, M. A. and Tian, J. and Terai, C. R. and Ullrich, P. A. and Yuan, X. and Zhang, Y.},
+	month = jul,
+	year = {2024},
+	pages = {e2024MS004314},
+	file = {Full Text PDF:/Users/mahf708/Zotero/storage/TIUXGMZ9/Donahue et al. - 2024 - To Exascale and Beyond—The Simple Cloud‐Resolving E3SM Atmosphere Model (SCREAM), a Performance Port.pdf:application/pdf},
+}
+
+@article{nurisso_aqua_2026,
+	title = {{AQUA} v1.0.0: {The} {Application} for {QUality} {Assessment} for the {Climate} {Change} {Adaptation} {Digital} {Twin} – the core engine},
+	volume = {19},
+	copyright = {https://creativecommons.org/licenses/by/4.0/},
+	issn = {1991-9603},
+	shorttitle = {{AQUA} v1.0.0},
+	url = {https://gmd.copernicus.org/articles/19/7725/2026/},
+	doi = {10.5194/gmd-19-7725-2026},
+	abstract = {Abstract. The increasing availability of kilometer-scale climate simulations presents major challenges for data access, processing, and analysis due to the unprecedented volume and heterogeneity of the outputs. Different data formats, structures, and metadata conventions, require dedicated solutions to ensure interoperability and usability. We introduce AQUA (Application for QUality Assessment), a Python-based framework developed within the Climate Change Adaptation Digital Twin of the Destination Earth (DestinE) initiative, designed to support the automated evaluation of high-resolution global climate simulations. Although several diagnostic suites for the analysis of global climate model data are already available, AQUA provides a flexible and modular infrastructure for accessing and processing climate model output across various formats. By building on widely adopted Python libraries, it enables scalable, out-of-core computations. Its design supports integration into automated workflows and user-defined pipelines, facilitating both operational and research-oriented applications. This paper focuses on the architecture and core functionalities of the AQUA core, which handles data ingestion, standardization, and pre-processing. AQUA is open source and actively maintained, and aims to serve as a community tool for robust, reproducible, and efficient climate data analysis across projects and institutions.},
+	language = {en},
+	number = {16},
+	urldate = {2026-09-07},
+	journal = {Geosci. Model Dev.},
+	author = {Nurisso, Matteo and Von Hardenberg, Jost and Cadau, Marco and Caprioli, Silvia and Ghinassi, Paolo and Ghosh, Supriyo and Koldunov, Nikolay and Nazarova, Natalia and Rajput, Maqsood Mubarak and Tovazzi, Emanuele and Davini, Paolo},
+	month = aug,
+	year = {2026},
+	pages = {7725--7740},
+	file = {Full Text:/Users/mahf708/Zotero/storage/VHTRWKSD/Nurisso et al. - 2026 - AQUA v1.0.0 The Application for QUality Assessment for the Climate Change Adaptation Digital Twin –.pdf:application/pdf},
+}
+
+@article{trott_kokkos_2022,
+	title = {Kokkos 3: {Programming} {Model} {Extensions} for the {Exascale} {Era}},
+	volume = {33},
+	copyright = {https://creativecommons.org/licenses/by/4.0/legalcode},
+	issn = {1045-9219, 1558-2183, 2161-9883},
+	shorttitle = {Kokkos 3},
+	url = {https://ieeexplore.ieee.org/document/9485033/},
+	doi = {10.1109/TPDS.2021.3097283},
+	number = {4},
+	urldate = {2026-09-07},
+	journal = {IEEE Trans. Parallel Distrib. Syst.},
+	author = {Trott, Christian R. and Lebrun-Grandie, Damien and Arndt, Daniel and Ciesko, Jan and Dang, Vinh and Ellingwood, Nathan and Gayatri, Rahulkumar and Harvey, Evan and Hollman, Daisy S. and Ibanez, Dan and Liber, Nevin and Madsen, Jonathan and Miles, Jeff and Poliakoff, David and Powell, Amy and Rajamanickam, Sivasankaran and Simberg, Mikael and Sunderland, Dan and Turcksin, Bruno and Wilke, Jeremiah},
+	month = apr,
+	year = {2022},
+	pages = {805--817},
+	file = {Full Text:/Users/mahf708/Zotero/storage/XIAE5AFZ/Trott et al. - 2022 - Kokkos 3 Programming Model Extensions for the Exascale Era.pdf:application/pdf},
+}
+
+@article{wan_condidiag10_2022,
+	title = {{CondiDiag1}.0: a flexible online diagnostic tool for conditional sampling and budget analysis in the {E3SM} atmosphere model ({EAM})},
+	volume = {15},
+	copyright = {https://creativecommons.org/licenses/by/4.0/},
+	issn = {1991-9603},
+	shorttitle = {{CondiDiag1}.0},
+	url = {https://gmd.copernicus.org/articles/15/3205/2022/},
+	doi = {10.5194/gmd-15-3205-2022},
+	abstract = {Abstract. Numerical models used in weather and climate prediction take into account
+a comprehensive set of atmospheric processes (i.e., phenomena) such as the
+resolved and unresolved fluid dynamics, radiative transfer,
+cloud and aerosol life cycles, and mass or energy exchanges with
+the Earth's surface.
+In order to identify model deficiencies and improve predictive skills,
+it is important to obtain process-level understanding of the
+interactions between different processes.
+Conditional sampling and budget analysis are powerful tools
+for process-oriented model evaluation, but they often require
+tedious ad hoc coding and large amounts of instantaneous model output,
+resulting in inefficient use of human and computing resources.
+This paper presents an online diagnostic tool that addresses
+this challenge by monitoring model variables in a generic manner
+as they evolve within the time integration cycle. The tool is convenient to use.
+It allows users to select sampling conditions and
+specify monitored variables at run time.
+Both the evolving values of the model variables and their increments
+caused by different atmospheric processes can be monitored and archived.
+Online calculation of vertical integrals is also supported.
+Multiple sampling conditions can be monitored in a single simulation
+in combination with unconditional sampling.
+The paper explains in detail the design and implementation of the tool in
+the Energy Exascale Earth System Model (E3SM) version 1.
+The usage is demonstrated through three examples:
+a global budget analysis of dust aerosol mass concentration,
+a composite analysis of sea salt emission and its dependency
+on surface wind speed,
+and a conditionally sampled relative humidity budget.
+The tool is expected to be easily portable to
+closely related atmospheric models that use the same or
+similar data structures
+and time integration methods.},
+	language = {en},
+	number = {8},
+	urldate = {2026-09-07},
+	journal = {Geosci. Model Dev.},
+	author = {Wan, Hui and Zhang, Kai and Rasch, Philip J. and Larson, Vincent E. and Zeng, Xubin and Zhang, Shixuan and Dixon, Ross},
+	month = apr,
+	year = {2022},
+	pages = {3205--3231},
+	file = {Full Text PDF:/Users/mahf708/Zotero/storage/MNFHQVQM/Wan et al. - 2022 - CondiDiag1.0 a flexible online diagnostic tool for conditional sampling and budget analysis in the.pdf:application/pdf},
+}
+
+@article{yepes-arbos_evaluation_2022,
+	title = {Evaluation and optimisation of the {I}/{O} scalability for the next generation of {Earth} system models: {IFS} {CY43R3} and {XIOS} 2.0 integration as a case study},
+	volume = {15},
+	copyright = {https://creativecommons.org/licenses/by/4.0/},
+	issn = {1991-9603},
+	shorttitle = {Evaluation and optimisation of the {I}/{O} scalability for the next generation of {Earth} system models},
+	url = {https://gmd.copernicus.org/articles/15/379/2022/},
+	doi = {10.5194/gmd-15-379-2022},
+	abstract = {Abstract. Earth system models have considerably increased their spatial resolution to solve more complex problems and achieve more realistic solutions. However, this generates an enormous amount of model data which requires proper management. Some Earth system models use inefficient sequential input/output (I/O) schemes that do not scale well when many parallel resources are used. In order to address this issue, the most commonly adopted approach is to use scalable parallel I/O solutions that offer both computational performance and efficiency. In this paper we analyse the I/O process of the European Centre for Medium-Range Weather Forecasts (ECMWF) operational Integrated Forecasting System (IFS) CY43R3. IFS can use two different output schemes: a parallel I/O server developed by Météo-France used operationally and an obsolete sequential I/O scheme. The latter is the only scheme that is being exposed by the OpenIFS variant of IFS. “Downstream” Earth system models that have adopted older versions of an IFS derivative as a component – such as the EC-Earth 3 climate model – also face a bottleneck due to the limited I/O capabilities and performance of the sequential output scheme. Moreover, it is often desirable to produce grid-point-space Network Common Data Format (NetCDF) files instead of the IFS native spectral and grid-point output fields in General Regularly-distributed Information in Binary form (GRIB), which requires the development of model-specific post-processing tools. We present the integration of the XML Input/Output Server (XIOS) 2.0 into IFS CY43R3. XIOS is an asynchronous Message Passing Interface (MPI) I/O server that offers features especially targeted at climate models: NetCDF output files, inline diagnostics, regridding, and, when properly configured, the capability to produce CMOR-compliant data. We therefore expect our work to reduce the computational cost of data-intensive (high-resolution) climate runs, thereby shortening the critical path of EC-Earth 4 experiments. The performance evaluation suggests that the use of XIOS 2.0 in IFS CY43R3 to output data achieves an adequate performance as well, outperforming the sequential I/O scheme. Furthermore, when we also take into account the post-processing task, which is needed to convert GRIB files to NetCDF files and also transform IFS spectral output fields to grid-point space, our integration not only surpasses the sequential output scheme but also the operational IFS I/O server.},
+	language = {en},
+	number = {2},
+	urldate = {2026-09-07},
+	journal = {Geosci. Model Dev.},
+	author = {Yepes-Arbós, Xavier and Van Den Oord, Gijs and Acosta, Mario C. and Carver, Glenn D.},
+	month = jan,
+	year = {2022},
+	pages = {379--394},
+	file = {Full Text PDF:/Users/mahf708/Zotero/storage/Z2EZHJ75/Yepes-Arbós et al. - 2022 - Evaluation and optimisation of the IO scalability for the next generation of Earth system models I.pdf:application/pdf},
+}
+
+@article{zender_analysis_2008,
+	title = {Analysis of self-describing gridded geoscience data with {netCDF} {Operators} ({NCO})},
+	volume = {23},
+	copyright = {https://www.elsevier.com/tdm/userlicense/1.0/},
+	issn = {13648152},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S1364815208000431},
+	doi = {10.1016/j.envsoft.2008.03.004},
+	language = {en},
+	number = {10-11},
+	urldate = {2026-09-07},
+	journal = {Environmental Modelling \& Software},
+	author = {Zender, Charles S.},
+	month = oct,
+	year = {2008},
+	pages = {1338--1342},
+}
+
+@incollection{valcke_flexible_2012,
+	address = {Berlin, Heidelberg},
+	title = {The {Flexible} {Modeling} {System}},
+	isbn = {978-3-642-23359-3 978-3-642-23360-9},
+	url = {https://link.springer.com/10.1007/978-3-642-23360-9_5},
+	doi = {10.1007/978-3-642-23360-9_5},
+	language = {en},
+	urldate = {2026-09-07},
+	booktitle = {Earth {System} {Modelling} - {Volume} 3},
+	publisher = {Springer Berlin Heidelberg},
+	author = {Balaji, V.},
+	collaborator = {Valcke, Sophie and Redler, René and Budich, Reinhard},
+	year = {2012},
+	note = {Series Title: SpringerBriefs in Earth System Sciences},
+	pages = {33--41},
+	file = {PDF:/Users/mahf708/Zotero/storage/UWQ8HRIN/Balaji - 2012 - The Flexible Modeling System.pdf:application/pdf},
+}
+
+@article{dennis_application-level_2012,
+	title = {An application-level parallel {I}/{O} library for {Earth} system models},
+	volume = {26},
+	issn = {1094-3420, 1741-2846},
+	url = {https://journals.sagepub.com/doi/10.1177/1094342011428143},
+	doi = {10.1177/1094342011428143},
+	abstract = {We describe the design and implementation of an application-level parallel I/O (PIO) library for the reading and writing of distributed arrays to several common scientific data formats. PIO provides the flexibility to control the number of I/O tasks through data rearrangement to an I/O friendly decomposition. This flexibility enables reductions in per task memory usage and improvements in disk I/O performance versus a serial I/O approach. We illustrate the impact various features within PIO have on memory usage and disk I/O bandwidth on a Cray XT5 system.},
+	language = {en},
+	number = {1},
+	urldate = {2026-09-07},
+	journal = {The International Journal of High Performance Computing Applications},
+	author = {Dennis, John M. and Edwards, Jim and Loy, Ray and Jacob, Robert and Mirin, Arthur A. and Craig, Anthony P. and Vertenstein, Mariana},
+	month = feb,
+	year = {2012},
+	pages = {43--53},
+}
+
+@inproceedings{krishna_scorpio_2025,
+	address = {Milano, Italy},
+	title = {{SCORPIO}: {A} {Parallel} {I}/{O} library for {Exascale} {Earth} {System} {Models}},
+	copyright = {https://doi.org/10.15223/policy-029},
+	isbn = {979-8-3315-2643-6},
+	shorttitle = {{SCORPIO}},
+	url = {https://ieeexplore.ieee.org/document/11105984/},
+	doi = {10.1109/IPDPSW66978.2025.00112},
+	urldate = {2026-09-07},
+	booktitle = {2025 {IEEE} {International} {Parallel} and {Distributed} {Processing} {Symposium} {Workshops} ({IPDPSW})},
+	publisher = {IEEE},
+	author = {Krishna, Jayesh and Wu, Danqing and Jacob, Robert and Ganyushin, Dmitry},
+	month = jun,
+	year = {2025},
+	pages = {712--721},
+}
+
+@article{petersen_ocean_2026,
+	title = {The ocean model for {E3SM} global applications: {Omega} version 0.1.0 – a new high-performance computing code for exascale architectures},
+	volume = {19},
+	copyright = {https://creativecommons.org/licenses/by/4.0/},
+	issn = {1991-9603},
+	shorttitle = {The ocean model for {E3SM} global applications},
+	url = {https://gmd.copernicus.org/articles/19/3569/2026/},
+	doi = {10.5194/gmd-19-3569-2026},
+	abstract = {Abstract. This paper introduces Omega, the Ocean Model for E3SM Global Applications. Omega is a new ocean model designed to run efficiently on high performance computing (HPC) platforms, including exascale heterogeneous architectures with accelerators, such as Graphics Processing Units (GPUs). Omega is written in C++ and uses the Kokkos performance portability library. These were chosen because they are well-supported and will help future-proof Omega for upcoming HPC architectures. Omega will eventually replace the Model for Prediction Across Scales-Ocean (MPAS-Ocean) in the US Department of Energy's (DOE's) Energy Exascale Earth System Model (E3SM). Omega runs on unstructured horizontal meshes with variable-resolution capability and implements the same horizontal discretization as MPAS-Ocean. This work documents the design and performance of Omega Version 0.1.0 (Omega-V0), which solves the shallow water equations with passive tracers and is the first step towards the full primitive equation ocean model. On Central Processing Units (CPUs), Omega-V0 is 1.4 times faster than MPAS-Ocean with the same configuration. Omega-V0 is more efficient on GPUs than CPUs on a per-watt basis – by a factor of 5.3 on Frontier and 3.6 on Aurora, two of the world's fastest exascale computers.},
+	language = {en},
+	number = {9},
+	urldate = {2026-09-07},
+	journal = {Geosci. Model Dev.},
+	author = {Petersen, Mark R. and Asay-Davis, Xylar S. and Barthel, Alice M. and Begeman, Carolyn Branecky and Bishnu, Siddhartha and Brus, Steven R. and Jones, Philip W. and Kang, Hyun-Gyu and Kim, Youngsung and Mametjanov, Azamat and O'Neill, Brian J. and Overfelt, James R. and Ringel, Kieran K. and Smith, Katherine M. and Sreepathi, Sarat and Van Roekel, Luke P. and Waruszewski, Maciej},
+	month = may,
+	year = {2026},
+	pages = {3569--3594},
+	file = {Full Text PDF:/Users/mahf708/Zotero/storage/STA3PANC/Petersen et al. - 2026 - The ocean model for E3SM global applications Omega version 0.1.0 – a new high-performance computing.pdf:application/pdf},
+}
+
+@article{rew_netcdf_1990,
+	title = {{NetCDF}: an interface for scientific data access},
+	volume = {10},
+	copyright = {https://ieeexplore.ieee.org/Xplorehelp/downloads/license-information/IEEE.html},
+	issn = {0272-1716},
+	shorttitle = {{NetCDF}},
+	url = {http://ieeexplore.ieee.org/document/56302/},
+	doi = {10.1109/38.56302},
+	number = {4},
+	urldate = {2026-09-07},
+	journal = {IEEE Comput. Grap. Appl.},
+	author = {Rew, R. and Davis, G.},
+	month = jul,
+	year = {1990},
+	pages = {76--82},
 }
