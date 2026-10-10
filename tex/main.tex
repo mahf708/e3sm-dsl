@@ -16,12 +16,14 @@
 
 \usepackage{booktabs}
 \usepackage{array}
+\usepackage[draft]{changes}
 
 %% Macros used by this manuscript.
 \newcommand{\dexpr}{\texttt{dexpr}}
 \newcommand{\bk}{\discretionary{}{}{}}
-\newcommand{\todo}[1]{\textbf{[TODO: #1]}}
-
+%\newcommand{\todo}[1]{\textbf{[TODO: #1]}}
+\definechangesauthor[name={Luca}, color=blue]{L}
+\definechangesauthor[name={Jeff}, color=green]{J}
 \graphicspath{{./}{../}{../fig/}}
 
 \begin{document}
@@ -73,7 +75,7 @@
 
 \begin{abstract}
 We describe a small diagnostic expression language that lets a derived diagnostic be requested in the output configuration instead of added to model source code.
-A standalone parser turns the string into a syntax tree; the host model validates it against a vocabulary it owns and lowers it onto its existing compiled diagnostics, which run once per model step on live, device-resident model state, before the stream's remapping and temporal accumulation.
+A standalone parser accepts a string containing a mathematical expression into a syntax tree. The host model validates this tree against a controlled vocabulary and dispatches it to an existing set of compiled diagnostic elements to evaluate the original expression. The evaluation runs once per model step online, using device-resident model state, before any remapping or temporal accumulation.
 We implement the system in the C++ atmosphere component of the Energy Exascale Earth System Model.
 Expression-produced fields match directly compiled equivalents to bit-for-bit or floating-point round-off, reproduce across restart, and add no end-to-end cost separable from the model's own run-to-run variability at the expression depths we test.
 Three miniature experiments --- a doubly periodic case, a conditional high-cloud workflow and a surface-coupling debugging investigation --- show that representative diagnostics from each can be written as expressions and evaluated at runtime.
@@ -91,28 +93,27 @@ Carrying $O(100)$ state fields puts a single snapshot near $0.7$\,GB, and writin
 Horizontal resolution refinement makes the data volume grow in a roughly cubic manner with respect to the refinement factor \citep{schar_kilometer-scale_2020}, assuming horizontal refinement is uniform and the temporal resolution is modified to ensure stability, while the vertical resolution remains constant.
 
 In practice, the raw archive is never saved in its entirety.
-Instead, a carefully chosen subset of the model state is written according to an output list agreed upon in advance, supplemented with developer-written derived diagnostics, at a specified cadence, and at a specified precision.
-Customarily, the set of all available output variables is hardcoded in the model and cannot be changed without modifying the source code, and oftentimes changes are inspired by community-driven model intercomparison projects or by specific scientific questions.
-It is normally treated as a logistical decision, a question of how much disk is available and for how long, but it is also a scientific one.
-The output list acts as an observation operator applied to the simulated trajectory, and it fixes a priori which questions the model output dataset can answer.
+Instead, a carefully chosen subset of the model state is written according to an output list agreed upon in advance, supplemented with developer-written derived diagnostics, at a specified cadence and precision.
+Customarily, the set of all possible output variables are hard-coded in the model and which ones are output is determined at runtime. But adding a new variable  cannot be done without modifying the source code, and oftentimes changes are needed as part of community-driven model intercomparison projects or for specific scientific questions.
+The final output set is normally treated as a logistical decision --- a question of how much disk is available and for how long --- but it is also a scientific one.
+The output list acts as an observation operator applied to the simulated trajectory, and it fixes a priori the set of questions the model output dataset can answer.
 
-The arrangement is comfortable while models have coarse resolution, but at storm- and cloud-resolving resolution, challenges arise due to both the output volume \citep{balaji_requirements_2018} and the questions we want to ask of the model.
-A coarse model is evaluated for its mean state, the seasonal cycle, and top-of-atmosphere energy balance, where monthly or daily mean of a fixed field list serves the purpose well enough.
-A kilometer-scale model enables further specialized evaluations, e.g., the organization of convection, updraft and downdraft statistics, cloud lifecycle, precipitation and wind extremes, and boundary-layer structure \citep{caldwell_convectionpermitting_2021,donahue_exascale_2024}.
+The arrangement is comfortable while models have coarse resolution, but at storm- and cloud-resolving resolutions, challenges arise due to both the output volume \citep{balaji_requirements_2018} and the evolving set of questions we want to ask of the model.
+A coarse global model is typically evaluated for its mean state, the seasonal cycle, and top-of-atmosphere energy balance, where monthly or daily mean of a fixed field list serves the purpose well enough.
+A kilometer-scale model enables further specialized evaluations, e.g., the organization of convection, updraft and downdraft statistics, cloud lifecycles, precipitation and wind extremes, and boundary-layer evolution \citep{caldwell_convectionpermitting_2021,donahue_exascale_2024}.
 The latter require conditional means, higher moments, distributions, event frequencies, threshold exceedances, and quantities tracked across time steps, which are not captured by simple averages.
-They need samples co-located in space and time at the model's own frequency, conditioning on masks the model forms on its own grid, and in some cases state carried from one step to the next.
-None of them commutes with the averaging and remapping that make output affordable either, so each one has to be formed at a particular point in the pipeline: a cloud mask diagnosed on the native grid and then remapped is a different quantity from a mask applied after remapping, and a covariance is not recoverable from separately averaged inputs at any cadence.
-Where a derived quantity is computed, and in what order relative to averaging and remapping, is therefore part of its definition, and an output list that fixes that order has already fixed the observable.
-So the archive has to grow and the archive has to carry different things, and those two pressures do not point in the same direction.
+These requirements need samples co-located in space and time at the model's own frequency, conditioning on masks the model forms on its own grid, and in some cases state is carried from one step to the next.
+None of these quantities commutes with the averaging and remapping that make output affordable either, so each one has to be formed at a particular point in the pipeline. A cloud mask diagnosed on the native grid and then remapped is a different quantity differs from a mask applied after remapping, and a covariance is not recoverable from separately averaged inputs at any cadence.
+The definition of a derived quantity therefore depends on the ordering of averaging and remapping. An output list that fixes that order has already fixed the set of observables. In order to track an evolving set of observables, an archived dataset must also grow and store different things. These two needs exert opposing forces on simulation campaigns.
 
-Model output is also increasingly a training set rather than an archive a person reads.
+Increasingly, model output is treated not merely as a set of analyzable data, but also as a training set for machine learning.
 Component and full-model emulators stand in as economical alternatives to physics models; process emulators replace uncertain or expensive parameterizations inside a running model; output emulators handle downscaling, bias correction, or projection onto impact space; and foundation models are fit to corpora assembled from many sources.
 Training datasets require higher frequency and different variables than human analysis does --- tendencies, fluxes, co-located pairs, and process-level state --- and they want a great deal of it.
-A training set prepared from model output is one more selection applied to the simulated trajectory, and it carries the same property as any other: whatever the preparation discards is not available to the model being trained.
+A training set prepared from model output imposes similar forces on a simulated trajectory: whatever the preparation discards is not available to the model being trained.
 
-Taken together, these pressures are an argument for rethinking how model output is designed.
-In this manuscript, we argue for a system in which a diagnostic is a mathematical expression, a flexible composition of a small set of operators with an algebra over them, evaluated by the model at runtime while the full state is still in memory.
-When implemented, such a system allows a scientist to imagine a variable or a product and project it out in a variety of productive ways without touching the source code: instantaneous or averaged, over an arbitrary time period, mapped, masked, reduced, or redefined.
+Taken together, these forces are an argument for rethinking how model output is designed.
+In this manuscript, we argue for a system in which a diagnostic is represented by a mathematical expression, a flexible composition of a small set of operators with an algebra over them, evaluated by the model at runtime while the full state is still in memory.
+When implemented, such a system allows a scientist to imagine a variable or a product and extract it from a model in a variety of productive ways without touching the source code: instantaneous or averaged, over an arbitrary time period, mapped, masked, reduced, or redefined.
 
 \subsection{Related works}
 \label{sec:related_works}
@@ -126,13 +127,13 @@ Runtime-analysis frameworks provide expression systems, including just-in-time-c
 Compiling a declarative mathematical specification down to domain-specific code is long-established in finite-element software \citep{alnaes_unified_2014}, and separating what is computed from how it is scheduled is standard practice in domain-specific compilers \citep{ragan-kelley_halide_2013}.
 
 Within Earth system modeling, the capability appears at four placements, each further from the model than the last.
-Model-integrated diagnostic managers expose a registered catalogue with reductions \citep{valcke_flexible_2012,danabasoglu_community_2020,kern_diagnostic_2016,adams_lfric_2019}, with conditional sampling and budgets available through specialized namelist interfaces \citep{wan_condidiag10_2022} and arbitrary code through plugin interfaces \citep{hartung_icon_2025,kern_diagnostic_2016}.
-These sit closest to the state, but what the user selects from is a catalogue of quantities somebody compiles in advance, so a new quantity is a source change.
+Diagnostic managers integrated into source code expose a registered catalogue with reductions \citep{valcke_flexible_2012,danabasoglu_community_2020,kern_diagnostic_2016,adams_lfric_2019}, conditional sampling and budgets available through specialized namelist interfaces \citep{wan_condidiag10_2022} and arbitrary code through plugin interfaces \citep{hartung_icon_2025,kern_diagnostic_2016}.
+These sit closest to the state, but the user selects from a catalogue of quantities compiled in advance, so a new quantity is a source change.
 I/O middleware carries an output algebra on the write path: XIOS provides arithmetic and elementary functions on fields, six temporal operations, and axis and domain transformations \citep{yepes-arbos_evaluation_2022}, MultIO provides configurable in-memory processing pipelines \citep{sarmany_multio_2024}, and ADIOS2 supports writer-side derived variables \citep{godoy_adios_2020}.
-Streaming architectures publish model state to external consumers while a simulation runs: nextGEMS makes common data handling and analysis a first-order part of multi-model kilometer-scale development, EVE frames simulation and data services as a federated infrastructure, and the Destination Earth Climate Digital Twin couples high-resolution production with streaming and downstream processing through One-Pass and AQUA \citep{segura_nextgems_2025,stevens_earth_2024,doblas-reyes_destination_2026,grayson_statistical_2025,nurisso_aqua_2026}.
+Streaming architectures publish model state to external consumers while a simulation runs: nextGEMS makes common data handling and analysis a first-order part of kilometer grid scale multi-model development, EVE frames simulation and data services as a federated infrastructure, and the Destination Earth Climate Digital Twin couples high-resolution production with streaming and downstream processing through One-Pass and AQUA \citep{segura_nextgems_2025,stevens_earth_2024,doblas-reyes_destination_2026,grayson_statistical_2025,nurisso_aqua_2026}.
 Post-processing on the archive is the furthest placement and the usual one.
-Offline analysis is supported by mature tooling in which fields are labeled objects and operators compose over them \citep{zender_analysis_2008,hoyer_xarray_2017,zhang_e3sm_2022}, and a scientist can express essentially any quantity there without touching model source code.
-What post-processing does not have is the model state.
+Offline analysis is supported by mature tooling in which fields are labeled objects and operators compose over them \citep{zender_analysis_2008,hoyer_xarray_2017,zhang_e3sm_2022}, and a scientist can express essentially any quantity there without touching model source code given sufficient output.
+What post-processing does not have is the full model state.
 It reproduces a quantity exactly whenever that quantity is determined by what is already written, and it cannot when it is not.
 The persistence boundary falls between the second placement and the third: I/O middleware still acts on the write path before anything is published, whereas streaming architectures publish to external consumers and post-processing reads an archive that is already written.
 Reduction before persistence is the direction the field is moving.
@@ -149,7 +150,7 @@ For that reason we follow \citet{childs_terminology_2020} in avoiding ``in situ,
 
 We implement the system described above in the C++ atmosphere component of E3SM \citep{donahue_exascale_2024}, written with Kokkos for performance portability \citep{trott_kokkos_2022}.
 A user writes a derived quantity as an expression over model fields in the output configuration; a standalone parser turns the string into a syntax tree, and the host model validates it against a vocabulary it owns and lowers it onto its existing compiled diagnostics.
-The operators are familiar ones for atmospheric modeling: interpolation to levels, pressure surfaces and height surfaces; horizontal, zonal and vertical reduction; vertical derivatives; conditional sampling; histograms; arithmetic; and a one-step temporal shift.
+The operators are familiar ones for atmospheric modeling: interpolation to vertical levels, pressure surfaces and height surfaces; horizontal, zonal and vertical reduction; vertical derivatives; conditional sampling; histograms; arithmetic; and a one-step temporal shift.
 Composed with the stream's own instantaneous, mean, minimum and maximum accumulation, they cover the projections named in Sect.~\ref{sec:intro}.
 
 Our system has four properties as follows.
@@ -180,9 +181,8 @@ The contract is not decorative, because field operations must respect the constr
 Two fields can be added only if their units agree; multiplying them multiplies their units; a vertical reduction removes a dimension tag; interpolating to a pressure level introduces a mask where the level lies outside the column.
 Like prognostic processes in the model, diagnostic processes take fields as input and produce fields as output.
 A control driver orchestrates the execution of these processes, ensuring that dependencies are satisfied and that the model advances in a consistent manner.
-Because the output reenters the model's field repository, it can be used as input for subsequent processes or diagnostics, enabling a composable workflow without additional machinery.
-A diagnostic also hashes the requested output time stamp together with the tracking time stamps of its inputs and skips computation if the hash is unchanged, so a diagnostic shared by several streams at one model time runs once, and a static repository keyed by request name lets a second stream reuse an object the first stream builds.
-
+Because the output \replaced[id=L]{is itself a field}{reenters the model's field repository}, it can be used as input for subsequent \deleted[id=L]{processes or} diagnostics, enabling a composable workflow without additional machinery.
+\replaced[id=L]{Redundant calculation is avoided both within as well as across output streams. First, a diagnostic keeps track of the time stamps of each input field, allowing it to skip the calculation entirely in case none of them has changed since the last evaluation. Second, all output streams use a centralized diagnostic repository keyed by the diagnostic field name, allowing streams to avoid recomputing a diagnostic that was already calculated by a previous stream}{A diagnostic also hashes the requested output time stamp together with the tracking time stamps of its inputs and skips computation if the hash is unchanged, so a diagnostic shared by several streams at one model time runs once, and a static repository keyed by request name lets a second stream reuse an object the first stream builds}.
 
 \emph{Output pipeline.}
 The output driver evaluates diagnostics on the source grid, then applies optional vertical remapping, then optional horizontal remapping, then updates the stream's temporal accumulator, then writes through SCORPIO \citep{krishna_scorpio_2025}.
@@ -192,11 +192,11 @@ The output driver evaluates diagnostics on the source grid, then applies optiona
 \end{equation}
 These stages are defined in Eq.~\eqref{eq:pipeline}, with absent stages resolving to identity.
 The written expression controls $\mathcal{D}_\text{e}$ and stream settings control the rest.
-Averaging and remapping do not commute with nonlinear operations: a user who writes \texttt{qv*T\_mid} in an averaged, horizontally remapped stream gets $\mathcal{A}_t\mathcal{R}_\text{h}[q_vT]$, which is neither $\mathcal{A}_t[\mathcal{R}_\text{h} q_v\cdot\mathcal{R}_\text{h} T]$ nor $\mathcal{R}_\text{h}\mathcal{A}_t[q_vT]$.
+Averaging and remapping do not commute with nonlinear operations: a user who writes \texttt{qv*T\_mid} in an averaged, horizontally remapped stream gets $\mathcal{A}_t\mathcal{R}_\text{h}[q_vT]$, which is neither $\mathcal{A}_t[\mathcal{R}_\text{h} q_v\cdot\mathcal{R}_\text{h} T]$ nor $\mathcal{R}_\text{h}\mathcal{A}_t[q_vT]$ \added[id=L]{(is this true? I think time and space operators do commute, at least up to rounding errors, unlike R(q*T) and R(q)*R(T) which are intrinsically different.)}.
 The order is a design decision made to cleanly separate concerns in the output pipeline.
 Figure~\ref{fig:arch} places the stages of Eq.~(\ref{eq:pipeline}) against the persistence boundary and names, at the lowering stage, the three demonstrations of Sect.~\ref{sec:demos} and the operators each draws on.
-The figure's one piece of encoding is which side of that boundary a stage sits on: above it a stage sees \texttt{Field} objects whose grid, layout, units and mask the component owns, and below it a published archive or stream.
-Downstream analysis is not displaced by anything above the line and is drawn with the same weight, because the products retained above it are what downstream analysis then works from.
+The figure's one piece of encoding is the side of that boundary a stage sits on: above it a stage sees \texttt{Field} objects whose grid, layout, units and mask the component owns, and below it a published archive or stream.
+Downstream analysis is not displaced by anything above the line and is drawn with the same weight, because the products retained above it are those worked from in downstream analysis.\added[id=L]{(I'm not sure the last 3 sentences make a lot of sense. And I'm not really sure what they were meant to convey. Also, I think fig 1 needs to be changed. There's no dexpr parse and validation at runtime, so the dexpr node does not belong in the same graph as the horiz/vert/time averaging). I think maybe this plot was trying to do 2 things: explain order of runtime ops, and explain how things are setup?}
 
 \begin{figure}[t]
 \centering
@@ -212,11 +212,11 @@ Below the persistence boundary, downstream systems act on a published archive or
 
 \emph{Global grammar, local semantics.}
 Even though composition is possible in the absence of a formal grammar, it quickly leads to ambiguity and confusion.
-Hence, introducing our diagnostic expression parser, \dexpr\,--- a lexer, a \citet{pratt_top_1973} parser, an abstract syntax tree (AST), a renderer that prints an abstract syntax tree back to canonical text, and a call validator.
+Hence, \replaced[id=L]{we introduced}{introducing} our diagnostic expression parser\replaced[id=L]{ \dexpr, consisting of}{, \dexpr\,---} a lexer, a \citet{pratt_top_1973} parser, an abstract syntax tree (AST), a renderer that prints an abstract syntax tree back to canonical text, and a call validator.
 It is a minimalist C++ library with no dependencies, and it does not know what a field, a grid, or a time step is.
-The component decides what means something, through a function registry in which it declares each callable with its name, arity, accepted keywords, and an example of the call as written.
-The registry validates itself at construction, such that each example must parse, must call the function that declares it, and must satisfy its own arity and keyword rules, so an inconsistent declaration fails when the registry is built rather than when a user first writes it.
-The division is the design's main portable idea: The grammar is global, the semantics are local, and two components can share a parser without sharing a single physics operator.
+The component decides \replaced[id=L]{how each node name is mapped to concrete diagnostic implementation}{what means something}, through a function registry in which it declares each callable with its name, arity, accepted keywords, and an example of the call as written.
+The registry validates itself at construction, \replaced[id=L]{ensuring}{such} that each example \replaced[id=L]{parses}{must parse}, \replaced[id=L]{calls}{and must call} the function that declares it, and \replaced[id=L]{satisfies}{must satisfy} its own arity and keyword rules\replaced[id=L]{. This ensures that inconsistencies are detected when the code is built rather than at runtime}{, so an inconsistent declaration fails when the registry is built rather than when a user first writes it}.
+The division is the design's main portable idea: the grammar is global, the semantics are local, and two components can share a parser without sharing a single physics operator.
 
 \emph{Surface syntax.}
 The syntax follows xarray \citep{hoyer_xarray_2017} spelling where possible.
@@ -255,7 +255,7 @@ Every primitive registered today has $m=1$, which the diagnostic interface enfor
 \begin{table*}[t]
 \caption{Diagnostic-expression vocabulary.
 The last column states the important restrictions rather than the full field contract.
-Eleven methods are registered; the four arithmetic operators, unary negation and the six comparisons complete the surface language.}
+Eleven methods are registered; the four arithmetic operators, unary negation and the six comparisons complete the surface language. \added[id=L]{I think we should not add the diag class name. Instead, I would add a col for "mask support", which specifies if the diag handles masked inputs and/or sets a mask on the output field (and how)}}
 \label{tab:vocabulary}
 \small \setlength{\tabcolsep}{4pt}
 \begin{tabularx}{\textwidth}{%
@@ -272,7 +272,7 @@ Indexing & \texttt{X.isel(lev=k)} & \texttt{FieldAtLevel} & \texttt{lev=0} is th
 Pressure interpolation & \texttt{X.interp(p\_mid=500,}\newline\texttt{\ \ units='hPa')} & \texttt{FieldAtPressure\bk Level} & Units default to Pa; columns where the level is outside the range are masked. \\
 Height interpolation & \texttt{X.interp(z\_mid=10,}\newline\texttt{\ \ reference='surface')} & \texttt{FieldAtHeight} & Units default to m; \texttt{reference} is \texttt{'sealevel'} (default) or \texttt{'surface'}. \\
 Horizontal mean & \texttt{X.mean('col')} & \texttt{HorizAvg} & Always area weighted; removes the column dimension; masked inputs renormalize by valid weight; collective over the diagnostic's communicator. \\
-Vertical contraction & \texttt{X.mean('lev')},\newline\texttt{X.sum('lev')} & \texttt{VertContract} & Removes the level dimension; \texttt{weights='dp'} or \texttt{'dz'}; masked means use a valid-weight denominator; rank-local. \\
+Vertical contraction & \texttt{X.mean('lev')},\newline\texttt{X.sum('lev')} & \texttt{VertContract} & Removes the level dimension; \texttt{weights='dp'} or \texttt{'dz'}; \deleted[id=L]{masked means use a valid-weight denominator; }rank-local \added[id=L]{curr master does something wrong/ambiguous regarding masking, so let's not specify it}. \\
 Conditional sampling & \texttt{X.where(qv>0.01)} & \texttt{Conditional\bk Sampling} & One comparison; invalid elements receive a mask and a fill value. \\
 Vertical derivative & \texttt{X.derivative('p\_mid')} & \texttt{VertDerivative} & With respect to \texttt{'p\_mid'} or \texttt{'z\_mid'}. \\
 Histogram & \texttt{X.histogram(}\newline\texttt{\ \ bins=[0,1,2])} & \texttt{Histogram} & Non-negative decimal bin edges. \\
@@ -332,11 +332,11 @@ End-to-end timing likewise resolves no expression overhead above repeated-run va
 \includegraphics[width=\textwidth]{../fig/fig11_demonstrations.png}
 \caption{Three diagnostic products requested through the same expression mechanism.
 Each card lists its stream's output configuration verbatim as \texttt{name := expression}.
-An alias --- built, usable by name, never written --- is set in black, and a written field is set in the color of what it produced, so no panel needs a separate legend.
+An alias --- built, usable by name, never written --- is set in black, and a written field is set in the color of what it produced, so no panel needs a separate legend. \added[id=L]{(We may want to change this, to accommodate people with color blindness. Perhaps we can visually box the never-written vars, and do away with colors for written vars (i don't think they are needed anyways))}
 The axes and the color bar carry those same names.
 (a) Domain-mean temperature from the miniature doubly periodic case, and beside it the horizontal standard deviation.
 Three moments are retained every step --- $\overline{T}$, $\overline{T^2}$ and $\overline{T}^2$, the overbar a horizontal mean --- and the standard deviation is formed downstream as $(\langle\overline{T^2}\rangle-\langle\overline{T}^2\rangle)^{1/2}$, the angle brackets a time mean.
-Squaring the horizontal mean online, rather than squaring the time-mean profile afterwards, is what makes this the time mean of the instantaneous horizontal variance.
+Squaring the horizontal mean online, rather than squaring the time-mean profile afterwards, is what makes this the time mean of the instantaneous horizontal variance. \added[id=L]{(I think we should use overbar and exponents in the legend, since it's easier to read than Tcolmean_sq)}
 (b) The P3 ice mixing-ratio tendency from the miniature high-cloud workflow, sampled in cloudy sky and over all sky: the two requests differ by one method call, and the cloudy-sky profile is larger than the all-sky one by more than an order of magnitude through most of the troposphere, so the two are drawn on separate scales.
 The shaded band marks the levels at which the cloud mask admits samples, read from the stream's own valid-sample count.
 (c) The fraction of steps at which successive surface-temperature differences reverse sign, formed with one-step shifts and arithmetic and written as a global field.
@@ -360,7 +360,7 @@ The second experiment is a one-day instance of the conditional high-cloud workfl
 The full study examines the response of tropical anvil cloud to surface warming over 19-month integrations.
 We instead select representative model-side operations from that workflow: the cloud condition $q_i+q_c>10^{-5}$, conditional samples such as \texttt{qi.where(qi+qc>1e-5)}, a conditional vertical derivative, and a product of conditionally sampled quantities.
 The expressions are evaluated every model step and accumulated over a 12\,h window.
-The cloud mask, conditional samples, derivative and products all execute from the output configuration and produce vertical high-cloud products, such as the conditioned P3 ice tendency in Fig.~\ref{fig:demos}b.
+The cloud mask, conditional samples, derivative and products all execute from the output configuration and produce vertically resolved high-cloud products, such as the conditioned P3 ice tendency in Fig.~\ref{fig:demos}b.
 Dropping the \texttt{where} clause from that same request leaves an all-sky profile smaller by more than an order of magnitude through most of the troposphere.
 This result is deliberately limited to capability: it shows that a conditional diagnostic graph that would otherwise be assembled from named compiled diagnostics can be represented using \texttt{where}, comparisons, arithmetic, vertical derivatives and reductions.
 For the scientific analysis and interpretation of this class of conditional high-cloud diagnostics, see \citet{beydoun_dissecting_2021} \todo{cite 2026 paper}.
@@ -380,8 +380,9 @@ aliases:
 field_names:
   - bt2         := bt - bt.shift(time=1)
   - bt2_product := bt*bt.shift(time=1)
-  - alternating := mask.where(bt*bt.shift(time=1)<0)*1.0
+  - alternating := mask.where(bt2_product<0)*1.0
 \end{verbatim}
+\added[id=L]{The $*1.0$ factor is a temporary workaround to a current EAMxx limitation, which can only output real-valued fields, while \texttt{mask} is an integer-valued field. We plan to address this in the near future, but also point out that this is a limitation of the IO interface in the host model, rather than in the composable diagnostics framework.}
 The three expression products agree bit for bit with direct replays of the corresponding compiled kernels over $17\,664$ values for each of \texttt{T\_2m} and \texttt{wind\_speed\_10m}.
 Figure~\ref{fig:demos}c shows one resulting diagnostic product: the fraction of samples in which successive differences reverse sign.
 The example exercises aliases, one-step history, arithmetic, comparisons and conditional sampling, and shows that such a diagnostic can be assembled from generic operators.
@@ -400,7 +401,7 @@ Each node of a lowered graph materializes its own intermediate field, so both ti
 The three experiments are capability demonstrations at reduced duration and resolution; they reproduce neither the integrations nor the conclusions of the studies they are drawn from.
 
 Those limits set the work we intend next.
-The clearest is a diagnostic kernelizer: the lowered graph is currently executed node by node, and fusing a chain into a single sweep would remove both the per-operation intermediates and much of the per-operation time, turning expression depth from a cost into a compiler concern.
+The clearest is a diagnostic kernelizer: the lowered graph is currently executed node by node, and fusing a chain into a single sweep would remove both the per-operation intermediates and much of the per-operation time, turning expression depth from a \replaced[id=L]{run-time cost into a compile-time cost}{cost into a compiler} concern.
 That in turn is easier to do behind a typed intermediate representation, which would also give a place for an optimizer to eliminate common subexpressions across streams rather than only sharing whole graphs.
 We also intend to port the capability to the C++ ocean component of E3SM \citep{petersen_ocean_2026}, which is the first real test of how much of the grammar is component-neutral and how much is atmosphere-specific, and to grow the vocabulary as scientists ask for operators it does not yet have.
 
