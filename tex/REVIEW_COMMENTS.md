@@ -2,6 +2,8 @@
 
 Exported from the Overleaf project on 2026-10-10, right after the "Sync edits from Overleaf" push. 59 open comment threads (none resolved), plus 62 tracked changes that have not been accepted or rejected.
 
+**Revision status (updated 2026-11-09):** every thread below is addressed in `tex/main.tex`. The note after each checkbox says how, and describes the text as of 2026-11-09. That is after a second revision pass that, among other things, names EAMxx once and calls it the host model thereafter, folds the old Sect. 3.1 (verification and cost) into the preamble of Sect. 3, condenses Table 2 and moves the grammar to Appendix A. Once the revision is synced, resolve the threads and accept the tracked changes in Overleaf.
+
 Line numbers refer to `tex/main.tex` as pushed in that commit. Overleaf pushes tracked insertions as plain text and leaves tracked deletions out, so the file here reads as if every tracked change were accepted. Line numbers will drift as the file is edited; the quoted anchor text is the reliable locator.
 
 Authors are the Overleaf display names, or the email handle mapped to a name where the account has none.
@@ -19,7 +21,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C01 · line 78
 
-- [ ] addressed
+- [x] addressed — Changed to "turns".
 
 > accepts a string containing a mathematical expression into a syntax tree
 
@@ -27,7 +29,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C02 · line 79
 
-- [ ] addressed
+- [x] addressed — EAMxx is named where the implementation is introduced (Contributions), and called the *host model* thereafter, because any E3SM component can host the same system. The abstract says "the C++ atmosphere component of E3SM". The title does not yet name the model; GMD asks for the model name and version there, which is still open.
 
 > the C++ atmosphere component of the Energy Exascale Earth System Model
 
@@ -37,7 +39,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C03 · line 90
 
-- [ ] addressed
+- [x] addressed — Gave the resolution (nominal 1°, about 100 km). Added the 3.25 km global storm-resolving case: about 25 million columns × 128 levels, about 13 GB per 3-D field per sample, nearly 2000× the 1° figure.
 
 > the latest release of the Energy Exascale Earth System Model (E3SM) has an atmosphere component with 21\,600 columns
 
@@ -45,7 +47,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C04 · line 97
 
-- [ ] addressed
+- [x] addressed — Added a sentence: the usual workaround is to write every input and compute the quantity in post-processing, which adds to output volume and write time.
 
 > adding a new variable  cannot be done without modifying the source code, and oftentimes changes are needed as part of community-driven model intercomparison projects or for specific scientific questions.
 
@@ -53,7 +55,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C05 · line 99
 
-- [ ] addressed
+- [x] addressed — The Discussion names spatial sampling (output at fixed sites, or along the track of an aircraft or a satellite) as future vocabulary, and Contributions says the current operators do not yet cover it. An intro sentence calling such sampling an observation operator applied in space was added in the first revision and later cut.
 
 > The output list acts as an observation operator applied to the simulated trajectory, and it fixes a priori the set of questions the model output dataset can answer.
 
@@ -61,7 +63,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C06 · line 105
 
-- [ ] addressed
+- [x] addressed — Changed to "at every model time step".
 
 > frequency
 
@@ -69,7 +71,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C07 · line 111
 
-- [ ] addressed
+- [x] addressed — Rewritten: training sets need a *different* selection. An emulator may use far fewer variables at higher frequency, and process emulators need quantities that are rarely written. Dropped "a great deal of it".
 
 > and they want a great deal of it.
 
@@ -77,7 +79,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C08 · line 115
 
-- [ ] addressed
+- [x] addressed — Answered in the last intro paragraph and in Fig. 1b: values go into the stream's in-memory accumulator every step and are written at the stream's output frequency.
 
 > evaluated by the model at runtime while the full state is still in memory.
 
@@ -87,7 +89,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C09 · line 121
 
-- [ ] addressed
+- [x] addressed — Now "reduce data volume before it is written".
 
 > reduce
 
@@ -95,7 +97,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C10 · line 122
 
-- [ ] addressed
+- [x] addressed — Removed the LHCb example, as Rob suggested.
 
 > LHCb experiment
 
@@ -103,7 +105,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C11 · line 122
 
-- [ ] addressed
+- [x] addressed — Moot: the LHCb sentence is gone.
 
 > LHCb
 
@@ -111,7 +113,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C12 · line 125
 
-- [ ] addressed
+- [x] addressed — Explained: a derived field is a formula over other fields, which may themselves be derived, and units carry through automatically.
 
 > units through recursively defined derived fields
 
@@ -119,7 +121,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C13 · line 126
 
-- [ ] addressed
+- [x] addressed — Defined just-in-time compilation in the text, following Jeff's reply.
 
 > just-in-time-compiled derived fields
 
@@ -128,7 +130,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C14 · line 129
 
-- [ ] addressed
+- [x] addressed — The four placements are now labeled paragraphs (1)–(4).
 
 > four
 
@@ -137,7 +139,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C15 · line 132
 
-- [ ] addressed
+- [x] addressed — Spelled out XIOS (and ADIOS2).
 
 > XIOS
 
@@ -145,7 +147,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C16 · line 136
 
-- [ ] addressed
+- [x] addressed — Now reads "Post-processing, however, sees only what was written, not the full model state", and the streaming placement is described as handing model state to consumers while the simulation runs.
 
 > What post-processing does not have is the full model state.
 
@@ -153,7 +155,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C17 · line 137
 
-- [ ] addressed
+- [x] addressed — Adopted: exact only when the written fields fully determine the quantity. A process rate usually doesn't qualify, because of process ordering and limiters or fixers.
 
 > It reproduces a quantity exactly whenever that quantity is determined by what is already written
 
@@ -161,7 +163,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C18 · line 138
 
-- [ ] addressed
+- [x] addressed — Persistence boundary is now defined where it is introduced (Related works), in Table 1 and in Fig. 1.
 
 > The persistence boundary
 
@@ -169,7 +171,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C19 · line 138
 
-- [ ] addressed
+- [x] addressed — Defined "write path" (middleware transforming fields on the way to the file) and "publish" (handing state to consumers outside the model).
 
 > I/O middleware still acts on the write path before anything is published
 
@@ -177,7 +179,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C20 · line 139
 
-- [ ] addressed
+- [x] addressed — Rewritten: time averaging and the choice of snapshots are established forms of reduction before persistence and part of every output configuration. In global km-scale modeling, more elaborate reductions (conditional statistics, moments, distributions) are now moving before the persistence boundary too.
 
 > Reduction before persistence is the direction the field is moving.
 
@@ -185,7 +187,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C21 · line 139
 
-- [ ] addressed
+- [x] addressed — Scoped to global km-scale modeling. Added that object tracking and observation simulators still write more output than ever.
 
 > field
 
@@ -193,7 +195,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C22 · line 141
 
-- [ ] addressed
+- [x] addressed — "Thesis" is gone. The three elements of the proposed approach are listed as (i)–(iii) at the end of the intro, as Jeff suggested, and Related works refers back to them as "the three elements of our proposed approach".
 
 > thesis
 
@@ -203,7 +205,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C23 · line 141
 
-- [ ] addressed
+- [x] addressed — Resolved by the same change: "its" now refers to the explicitly listed three elements.
 
 > its
 
@@ -213,7 +215,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C24 · line 144
 
-- [ ] addressed
+- [x] addressed — Now names them: "I/O middleware and streaming architectures".
 
 > several of these systems
 
@@ -221,7 +223,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C25 · line 144
 
-- [ ] addressed
+- [x] addressed — Rewritten: the distinction drawn is between whose code computes the diagnostic and on which representation of the state, explicitly not between online and offline analysis.
 
 > online against offline
 
@@ -229,7 +231,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C26 · line 145
 
-- [ ] addressed
+- [x] addressed — Paragraph rewritten in plain terms with an example (mass-weighted vertical integral, mean over valid cells). Added Table 1 (terms) and the new Fig. 1 so the terminology is fixed early.
 
 > It is which representation of the state the operator receives, and therefore which code implements the operator: for a quantity whose definition depends on the component's own conventions, its vertical coordinate, its area weights, its masking and renormalization rule, the implementation is part of the definition.
 > For that reason we follow \citet{childs_terminology_2020} in avoiding ``in situ,'' whose established usage covers analysis over a published mesh representation, and we write ``model-integrated'' or ``in-model'' throughout.
@@ -241,7 +243,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C27 · line 151
 
-- [ ] addressed
+- [x] addressed — Now points to Fig. 1 (new schematic) and Table 1.
 
 > the system
 
@@ -249,7 +251,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C28 · line 152
 
-- [ ] addressed
+- [x] addressed — Verbs replaced with plain ones: the host model "checks every name and operation in the tree against a list of operations it supports, and translates the tree into a graph of its existing compiled diagnostics, i.e., C++ routines already in the model that compute derived fields from other fields".
 
 > syntax tree, and the host model validates it against a vocabulary it owns and lowers it onto its existing compiled diagnostics.
 
@@ -257,7 +259,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C29 · line 152
 
-- [ ] addressed
+- [x] addressed — "Lower" is removed throughout and replaced with "translate"; "lowered graph" is now "diagnostic graph".
 
 > lowers
 
@@ -268,7 +270,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C30 · line 153
 
-- [ ] addressed
+- [x] addressed — Clarified: level selection and vertical interpolation are expression operators. Horizontal regridding is not, because it is already a stream setting.
 
 > vertical
 
@@ -277,7 +279,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C31 · line 157
 
-- [ ] addressed
+- [x] addressed — Added a scope paragraph to Contributions. Expressions can see every field registered with the field manager: the prognostic state, inter-process fields, and other diagnostics and expressions. They cannot see quantities local to a parameterization (e.g. a single microphysics rate, or a rate before a fixer); exposing one means registering it as a field, a source change made once per input. Andrew's point (hard-coded output-ready fields, configurable operators) is now stated explicitly.
 
 > not require a review and a merge
 
@@ -285,7 +287,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C32 · line 158
 
-- [ ] addressed
+- [x] addressed — Same scope paragraph as C31: expressions see what is registered with the field manager at the end of the step, not values local to a parameterization, which need a one-time source change to register. The Discussion repeats this for users.
 
 > at the end of the step 
 
@@ -294,7 +296,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C33 · line 158
 
-- [ ] addressed
+- [x] addressed — Now "the model's in-memory fields". Field is defined in Sect. 2 and Table 1.
 
 > live \texttt{Field} objects
 
@@ -304,7 +306,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C34 · line 190
 
-- [ ] addressed
+- [x] addressed — Every symbol in Eq. 2 is now defined right after the equation.
 
 >  Y = \mathcal{A}_t\,\mathcal{R}_\text{h}\,\mathcal{R}_\text{v}\,\mathcal{D}_\text{e}[X(t)],
 
@@ -312,7 +314,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C35 · line 194
 
-- [ ] addressed
+- [x] addressed — Defined: the diagnostic stage that evaluates the requested expressions.
 
 >  $\mathcal{D}_\text{e}$
 
@@ -320,7 +322,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C36 · line 197
 
-- [ ] addressed
+- [x] addressed — Both terms defined (persistence boundary in Sect. 1; "lowering" replaced by "translation" and explained).
 
 > persistence boundary and names, at the lowering stage
 
@@ -328,7 +330,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C37 · line 199
 
-- [ ] addressed
+- [x] addressed — The three sentences are deleted. Fig. 1 is redrawn to separate one-time setup from per-step evaluation, as Luca suggested.
 
 > I'm not sure the last 3 sentences make a lot of sense
 
@@ -336,7 +338,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C38 · line 227
 
-- [ ] addressed
+- [x] addressed — Explained: the only difference is whether the result is written. warm_T could go under field_names, and conditionals don't need an alias.
 
 >  aliases:
 
@@ -344,7 +346,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C39 · line 230
 
-- [ ] addressed
+- [x] addressed — It wasn't a flux. The example is now `rho_air := p_mid/(Rair*T_mid)` (ideal-gas density). The constants list was also fixed: `Rgas` in EAMxx is the universal gas constant per kmol, so `Rair` and `gravit` are named instead.
 
 > q_flux         := (qc+qv)*p_mid
 
@@ -352,7 +354,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C40 · line 249
 
-- [ ] addressed
+- [x] addressed — Added: every field (model variable, alias or written expression) has a name, used to look it up, and a contract, used to check operations on it.
 
 > contract $\sigma$
 
@@ -360,7 +362,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C41 · line 289
 
-- [ ] addressed
+- [x] addressed — Paragraph rewritten step by step, with AST and tokenizing defined, and pointed at Figs. 1 and 2.
 
 > A request reaches the output manager as a string, and the manager splits an optional \texttt{name :=} prefix, tries the remainder through \dexpr, which tokenizes and parses it; the AST is then validated against the model's registry.
 
@@ -368,7 +370,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C42 · line 290
 
-- [ ] addressed
+- [x] addressed — Defined ("the outermost operation"), also in Table 1.
 
 > root node 
 
@@ -376,7 +378,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C43 · line 290
 
-- [ ] addressed
+- [x] addressed — Explained as "the routine that builds a diagnostic from its name".
 
 > factory
 
@@ -384,7 +386,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C44 · line 291
 
-- [ ] addressed
+- [x] addressed — Removed; the sentence now says the graph is built by resolving names.
 
 > graph object
 
@@ -392,7 +394,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C45 · line 295
 
-- [ ] addressed
+- [x] addressed — Changed to "layer".
 
 > phase
 
@@ -402,7 +404,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C46 · line 322
 
-- [ ] addressed
+- [x] addressed — The separate verification subsection is gone. Its checks are summarized in the preamble of Sect. 3 and in each demonstration, `shift` and `tend` are defined in Table 2 before they are used, and the restart behavior of `shift` is stated in Table 2 (invalid until its input is first computed, also after a restart).
 
 > identical \texttt{shift} and \texttt{tend} output over all eight common windows
 
@@ -410,7 +412,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C47 · line 323
 
-- [ ] addressed
+- [x] addressed — Diagnostic graph is defined in Table 1 and used consistently.
 
 > diagnostic graph
 
@@ -420,7 +422,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C48 · line 330
 
-- [ ] addressed
+- [x] addressed — Panels are labeled (a)–(c) by experiment. Fig. 3 was regenerated on 2026-10-11 from `fig/make_fig11_demonstrations.py` without the machinery row, which Fig. 1 now covers: three columns, one per experiment.
 
 > \begin{figure*}[t]
 
@@ -428,7 +430,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C49 · line 335
 
-- [ ] addressed
+- [x] addressed — Alias is now defined in Table 1 and Sect. 2, before the figure.
 
 > An alias --- built, usable by name, never written
 
@@ -436,7 +438,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C50 · line 335
 
-- [ ] addressed
+- [x] addressed — Fig. 3 regenerated on 2026-10-11. Nothing is colour-coded any more: aliases are boxed (Luca's suggestion), all card text is one ink, both doubly periodic profiles are one colour on separate axes, and the cloudy/all-sky pair differs in line style as well as hue. Axis labels use overbar notation instead of `Tcolmean_sq`-style names (Luca).
 
 > a written field is set in the color of what it produced, so no panel needs a separate legend.
 
@@ -446,7 +448,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C51 · line 359
 
-- [ ] addressed
+- [x] addressed — The text now defines the configuration: a one-day global atmosphere-only simulation with prescribed sea surface temperature and sea ice on the ne4pg2 grid (384 columns), 128 levels, one-hour step, 12 h averages. The Fig. 3 caption says panel (b) is the first 12 h of a run from the model's default initial condition. (Run record: rev3 `E18.cess2`, `F2010-SCREAMv1`.)
 
 > The second experiment is a one-day instance of the conditional high-cloud workflow 
 
@@ -456,7 +458,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C52 · line 371
 
-- [ ] addressed
+- [x] addressed — Defined b_t = f_t − f_{t−1} and wrote the product out in terms of f_t, f_{t−1} and f_{t−2} (Eq. 6), with the second difference b_t − b_{t−1} in the text. The text says what a negative product means and how the fraction of negative steps measures reversals.
 
 > exercise temporal composition
 
@@ -464,7 +466,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C53 · line 379
 
-- [ ] addressed
+- [x] addressed — Names now match Fig. 3c: bt1 and bt_sign_reversal, used consistently.
 
 > bt := f - f.shift(time=1)
 
@@ -472,7 +474,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C54 · line 386
 
-- [ ] addressed
+- [x] addressed — The text now says "purpose-built C++ kernels", and kernel is defined in Table 1.
 
 > compiled kernels
 
@@ -480,7 +482,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C55 · line 388
 
-- [ ] addressed
+- [x] addressed — One step per `shift`. The text now explains that `bt1.shift(time=1)` reaches f_{t-2} because each shift stores its own operand. This relies on diagnostics being evaluated every step (averaged streams).
 
 > one-step history
 
@@ -490,7 +492,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C56 · line 399
 
-- [ ] addressed
+- [x] addressed — Both points added to the Discussion: (1) a process rate not already a field still needs a source change to register it; (2) an expression is written at the frequency of its own stream, so it can be written every step while other output is daily or monthly.
 
 > expressions are evaluated at the end of the time step and inside the output path, so they reach model state before the reductions that would destroy it but not between two parameterizations.
 
@@ -499,7 +501,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C57 · line 401
 
-- [ ] addressed
+- [x] addressed — Sentence removed, as Peter suggested. Sect. 3 says each experiment is cut down to the duration and resolution its operators need, and that each is checked against an every-step reconstruction from the same run.
 
 > they reproduce neither the integrations nor the conclusions of the studies they are drawn from.
 
@@ -507,7 +509,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C58 · line 404
 
-- [ ] addressed
+- [x] addressed — "Kernelizer" replaced by "kernel fusion", with an explanation.
 
 > kernelizer
 
@@ -515,7 +517,7 @@ Authors are the Overleaf display names, or the email handle mapped to a name whe
 
 #### C59 · line 404
 
-- [ ] addressed
+- [x] addressed — Now "diagnostic graph", which is defined in Table 1.
 
 > lowered graph
 
